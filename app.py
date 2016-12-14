@@ -14,6 +14,18 @@ ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
+def dict_from_file(file):
+    d = {}
+    with open(file) as f:
+        for line in f:
+            if not line.startswith('#') and line.strip():
+                line = line.strip()
+                (key, val) = line.split('|')
+                d[str(key)] = val
+    return d 
+    
+## Get dict files
+direction_dict = dict_from_file("data/DirectionDict.txt")
 
 @ask.launch
 
@@ -47,12 +59,13 @@ def available_lines():
 @ask.intent("NextSubwayIntent")
 ## This intent is to get the next arrival times for a given subway line
 
-def next_subway():
+def next_subway(direction):
 
     # hardcode a station ID, route, and line for now
     station_id = "309"
     route = "6"
-    direction = "N"
+    print("direction: " + str(direction))
+    train_direction = direction_dict[str(direction.lower())]
     
     print("Intent: NextSubwayIntent")
     
@@ -67,13 +80,13 @@ def next_subway():
 
     times = []
     
-    for train in data['data'][0][direction]:
+    for train in data['data'][0][train_direction]:
         if (train['route']==route):
             time = parser.parse(train['time'])
             delta = time - current_time
             times.append(str(int(round(delta.seconds/60))) + " minutes ")
     
-    msg = "The next Northbound " + route + " train arrives at Union Square in " + " and ".join(times)
+    msg = "The next " + direction + " " + route + " train arrives at Union Square in " + " and ".join(times)
     print(msg)
     return statement(msg) 
 
@@ -83,7 +96,12 @@ def next_subway():
 def stop():
     print ("Intent: AMAZON.StopIntent")
     return statement("Goodbye.")
+ 
+    
+          
 
 if __name__ == '__main__':
 
     app.run(debug=True)
+
+  

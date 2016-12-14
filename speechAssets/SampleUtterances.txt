@@ -1,0 +1,8 @@
+AvailableLinesIntent	What lines are available
+AvailableLinesIntent	What subways are available
+AvailableLinesIntent    Which subway lines
+AvailableLinesIntent	Which subways do you know
+NextSubwayIntent		When is the next {direction} subway
+NextSubwayIntent		When's the next {direction} subway
+NextSubwayIntent		When's the next {direction} train
+NextSubwayIntent		When is the next {direction} six train arriving

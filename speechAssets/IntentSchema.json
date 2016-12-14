@@ -1,0 +1,12 @@
+{
+
+    "intents": [{
+     "intent" : "AvailableLinesIntent"
+      
+    },{
+      "intent" : "NextSubwayIntent",
+      "slots":[{"name":"direction","type":"DIRECTION"}]
+    }
+               ]
+
+}

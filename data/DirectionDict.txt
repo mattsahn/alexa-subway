@@ -1,0 +1,16 @@
+uptown|N
+north|N
+northbound|N
+south|S
+southbound|S
+downtown|S
+east|S
+eastbound|S
+west|N
+westbound|N
+queens|N
+queensbound|N
+brooklyn bound|S
+bronx|N
+bronx bound|N
+
