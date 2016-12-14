@@ -26,6 +26,7 @@ def dict_from_file(file):
     
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
+train_dict = dict_from_file("data/TrainDict.txt")
 
 @ask.launch
 
@@ -59,13 +60,14 @@ def available_lines():
 @ask.intent("NextSubwayIntent")
 ## This intent is to get the next arrival times for a given subway line
 
-def next_subway(direction):
+def next_subway(direction,train):
 
     # hardcode a station ID, route, and line for now
     station_id = "309"
-    route = "6"
     print("direction: " + str(direction))
-    train_direction = direction_dict[str(direction.lower())]
+    print("train: " + str(train))
+    train_direction = direction_dict[str(direction).lower()]
+    train_name = train_dict[str(train).lower()]
     
     print("Intent: NextSubwayIntent")
     
@@ -81,12 +83,12 @@ def next_subway(direction):
     times = []
     
     for train in data['data'][0][train_direction]:
-        if (train['route']==route):
+        if (train['route']==train_name):
             time = parser.parse(train['time'])
             delta = time - current_time
             times.append(str(int(round(delta.seconds/60))) + " minutes ")
     
-    msg = "The next " + direction + " " + route + " train arrives at Union Square in " + " and ".join(times)
+    msg = "The next " + direction + " " + train_name + " train arrives at Union Square in " + " and ".join(times)
     print(msg)
     return statement(msg) 
 

@@ -1,12 +1,17 @@
 {
 
     "intents": [{
-     "intent" : "AvailableLinesIntent"
-      
-    },{
-      "intent" : "NextSubwayIntent",
-      "slots":[{"name":"direction","type":"DIRECTION"}]
-    }
-               ]
+        "intent": "AvailableLinesIntent"
+
+    }, {
+        "intent": "NextSubwayIntent",
+        "slots": [{
+            "name": "direction",
+            "type": "DIRECTION"
+        }, {
+            "name": "train",
+            "type": "TRAIN"
+        }]
+    }]
 
 }
