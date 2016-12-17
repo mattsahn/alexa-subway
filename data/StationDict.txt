@@ -1,0 +1,451 @@
+greenpoint avenue|0
+21st street|1
+36th street|2
+queens plaza|3
+nassau avenue|4
+metropolitan avenue lorimer street|5
+court square|6
+queensboro plaza|7
+33rd street|8
+40th street|9
+46th street|10
+52nd street|11
+woodside 61st street|12
+69th street|13
+74 street - broadway - roosevelt avenue|14
+bay 50 street|15
+25 avenue|16
+bay pkwy|17
+20 avenue|18
+alabama avenue|19
+van siclen avenue|20
+cleveland street|21
+norwood avenue|22
+crescent street|23
+halsey street|24
+chauncey street|25
+broadway junction|26
+sutphin boulevard|27
+75 avenue|28
+kew gardens - union tpke|29
+jamaica - 179 street|30
+shepherd avenue|31
+parsons blvd|32
+169 street|33
+80 street|34
+avenue u|35
+kings hwy|36
+18 avenue|37
+bay pkwy|38
+20 avenue|39
+fort hamilton pkwy|40
+8th avenue|41
+beach 25 street|42
+far rockaway - mott avenue|43
+beach 90 street|44
+beach 98 street|45
+beach 105 street|46
+chambers street|47
+broad street|48
+207 street|49
+dyckman street|50
+238 street|51
+van cortlandt park - 242 street|52
+marble hill - 225 street|53
+215 street|54
+231 street|55
+beverly rd|56
+church avenue|57
+flatbush avenue - brooklyn college|58
+brooklyn bridge city hall|59
+newkirk avenue|60
+president street|61
+winthrop street|62
+sterling street|63
+kingston avenue|64
+2nd avenue|65
+ralph avenue|66
+liberty avenue|67
+steinway street|68
+46 street|69
+northern blvd|70
+65 street|71
+elmhurst avenue|72
+grand avenue - newtown|73
+woodhaven blvd|74
+63 dr - rego park|75
+neck rd|76
+sheepshead bay|77
+avenue u|78
+avenue m|79
+kings highway|80
+avenue h|81
+avenue j|82
+cortelyou rd|83
+newkirk avenue|84
+eastern pkwy - brooklyn museum|85
+franklin avenue / botanic garden|86
+nevins street|87
+atlantic avenue barclays center|88
+barclays center|88
+bergen street|89
+grand army plaza|90
+wall street|91
+clark street|92
+borough hall / court street|93
+hoyt street|94
+st george|95
+tompkinsville|96
+brook avenue|97
+3 avenue - 138 street|98
+south ferry loop / whitehall street|99
+whitlock avenue|100
+hunts point avenue|101
+morrison av- sound view|102
+elder avenue|103
+e 143 street - street mary's street|104
+cypress avenue|105
+longwood avenue|106
+e 149 street|107
+coney island - stillwell avenue|108
+w 8 street - ny aquarium|109
+ocean pkwy|110
+brighton beach|111
+inwood - 207 street|112
+dyckman street|113
+181 street|114
+175 street|115
+190 street|116
+christopher street - sheridan sq|117
+14th street|118
+18th street|119
+23rd street|120
+chambers street|121
+franklin street|122
+canal street|123
+houston street|124
+rector street|125
+cortlandt street|126
+fordham rd|127
+kingsbridge rd|128
+bedford park blvd - lehman college|129
+45 street|130
+woodlawn|131
+prospect avenue|132
+25 street|133
+36 street|134
+dekalb avenue|135
+burnside avenue|136
+183 street|137
+bedford avenue|138
+1 avenue|139
+3 avenue|140
+90 street - elmhurst avenue|141
+82 street - jackson hts|142
+111 street|143
+103 street - corona plaza|144
+junction blvd|145
+flushing - main street|146
+mets willets point|147
+gates avenue|148
+kosciuszko street|149
+tremont avenue|150
+182-183 sts|151
+fordham rd|152
+kingsbridge rd|153
+bedford park blvd|154
+norwood - 205 street|155
+170 street|156
+174-175 sts|157
+nostrand avenue|158
+kingston - throop avs|159
+clinton - washington avs|160
+franklin avenue|161
+hoyt - schermerhorn sts|162
+lafayette avenue|163
+high street|164
+jay street - metrotech|165
+5th avenue 53rd street|166
+lexington avenue 53rd street|167
+east broadway|168
+nostrand avenue|169
+utica avenue|170
+delancey street / essex street|171
+86th street|172
+110th street|173
+116th street|174
+125th street|175
+77 street|176
+86 street|177
+96 street|178
+103 street|179
+lexington avenue 59th street|180
+68 street - hunter college|181
+spring street|182
+west 4th street|183
+8 avenue / 14 street|184
+23rd street|185
+chambers street|186
+canal street|187
+85 street - forest pkwy|188
+75 street|189
+briarwood - van wyck blvd|190
+rockaway avenue|191
+van siclen avenue|192
+bay ridge - 95 street|193
+central avenue|194
+lorimer street|195
+flushing avenue|196
+59th street|197
+hewes street|198
+77 street|199
+bay ridge avenue|200
+bowery|201
+euclid avenue|202
+grant avenue|203
+forest hills - 71 avenue|204
+67 avenue|205
+jamaica center - parsons/archer|206
+sutphin blvd - archer avenue - jfk airport|207
+jamaica - van wyck|208
+wakefield - 241 street|209
+233 street|210
+nereid avenue|211
+219 street|212
+225 street|213
+burke avenue|214
+gun hill rd|215
+new dorp|216
+grant city|217
+bay terrace|218
+oakwood heights|219
+old town|220
+grasmere|221
+jefferson avenue|222
+dongan hills|223
+clifton|224
+stapleton|225
+4 avenue / 9 street|226
+smith - 9 sts|227
+carroll street|228
+bergen street|229
+church avenue|230
+fort hamilton pkwy|231
+15 street - prospect park|232
+7 avenue|233
+ditmas avenue|234
+96 street|235
+86 street|236
+79 street|237
+72 street|238
+66 street - lincoln center|239
+59 street - columbus circle|240
+50 street|241
+times sq - 42 street|242
+34 street - penn station|243
+28 street|244
+astoria - ditmars blvd|245
+astoria blvd|246
+broadway|247
+30 avenue|248
+36 avenue|249
+39 avenue|250
+161 street - yankee stadium|251
+138 street - grand concourse|252
+176 street|253
+mt eden avenue|254
+170 street|255
+167 street|256
+wall street|257
+halsey street|258
+morgan avenue|259
+jefferson street|260
+dekalb avenue|261
+myrtle - wyckoff avs|262
+graham avenue|263
+grand street|264
+montrose avenue|265
+myrtle avenue|266
+86 street|267
+53 street|268
+marcy avenue|269
+rockaway park - beach 116 street|270
+21 street - queensbridge|271
+roosevelt island|272
+lexington av/63 street|273
+7 avenue|274
+47-50 sts - rockefeller ctr|275
+42 street - bryant pk|276
+34 street - herald sq|277
+167 street|278
+155 street|279
+23 street|280
+14 street / 6 avenue|281
+saratoga avenue|282
+rockaway avenue|283
+crown hts - utica avenue|284
+sutter avenue - rutland rd|285
+van siclen avenue|286
+new lots avenue|287
+livonia avenue / junius street|288
+pennsylvania avenue|289
+great kills|290
+eltingville|291
+richmond valley|292
+nassau|293
+atlantic|294
+annadale|295
+huguenot|296
+prince's bay|297
+pleasant plains|298
+pelham pkwy|299
+morris park|300
+baychester avenue|301
+gun hill rd|302
+mosholu pkwy|303
+51st street|304
+grand central|305
+33rd street|306
+28th street|307
+23rd street|308
+union square|309
+union square 14th street|309
+astor place|310
+broadway lafayette street / bleecker street|311
+spring street|312
+canal street|313
+86 street|314
+81 street - museum of natural history|315
+72 street|316
+50 street|317
+42 street - port authority bus terminal|318
+34 street - penn station|319
+union street|320
+seneca avenue|321
+fresh pond rd|322
+forest avenue|323
+middle village - metropolitan avenue|324
+knickerbocker avenue|325
+flushing avenue|326
+broadway|327
+bedford - nostrand avs|328
+myrtle - willoughby avs|329
+clinton - washington avs|330
+classon avenue|331
+fulton street|332
+world trade center|333
+freeman street|334
+simpson street|335
+west farms sq - e tremont avenue|336
+174 street|337
+bronx park east|338
+e 180 street|339
+allerton avenue|340
+pelham pkwy|341
+intervale avenue|342
+prospect avenue|343
+18 avenue|344
+avenue i|345
+bay pkwy|346
+avenue n|347
+avenue p|348
+kings hwy|349
+avenue u|350
+avenue x|351
+neptune avenue|352
+111 street|353
+ozone park - lefferts blvd|354
+88 street|355
+rockaway blvd|356
+104 street|357
+beach 36 street|358
+beach 44 street|359
+howard beach - jfk airport|360
+aqueduct - n conduit avenue|361
+aqueduct racetrack|362
+beach 60 street|363
+beach 67 street|364
+broad channel|365
+137 street - city college|366
+145 street|367
+116 street - columbia university|368
+125 street|369
+181 street|370
+191 street|371
+157 street|372
+168 street - washington hts|373
+103 street|374
+cathedral pkwy|375
+57 street - 7 avenue|376
+49 street|377
+5 av/59 street|378
+28 street|379
+23 street|380
+bowling green|381
+harlem - 148 street|382
+145 street|383
+62 street / new utrecht avenue|384
+71 street|385
+50 street|386
+55 street|387
+9 avenue|388
+fort hamilton pkwy|389
+57 street|390
+79 street|391
+18 avenue|392
+bushwick avenue - aberdeen street|393
+wilson avenue|394
+sutter avenue|395
+atlantic avenue|396
+new lots avenue|397
+cypress hills|398
+canarsie - rockaway pkwy|399
+e 105 street|400
+104 street|401
+woodhaven blvd|402
+121 street|403
+111 street|404
+beverly rd|405
+church avenue|406
+grand street|407
+7 avenue|408
+parkside avenue|409
+prospect park|410
+fulton street|411
+park pl|412
+central park north (110 st)|413
+116 street|414
+125 street|415
+135 street|416
+149 street - grand concourse|417
+3 avenue - 149 street|418
+jackson avenue|419
+tottenville|420
+park pl|421
+5 avenue|422
+hunters point avenue|423
+vernon blvd - jackson avenue|424
+eastchester - dyre avenue|425
+westchester sq - e tremont avenue|426
+castle hill avenue|427
+zerega avenue|428
+pelham bay park|429
+middletown rd|430
+buhre avenue|431
+st lawrence avenue|432
+parkchester|433
+125 street|434
+135 street|435
+cathedral pkwy (110 st)|436
+116 street|437
+155 street|438
+163 street - amsterdam avenue|439
+145 street|440
+96 street|441
+103 street|442
+york street|443
+rector street|444
+cortlandt street|445
+city hall|446
+prince street|447
+8 street - nyu|448

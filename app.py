@@ -27,6 +27,7 @@ def dict_from_file(file):
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
+station_dict = dict_from_file("data/StationDict.txt")
 
 @ask.launch
 
@@ -36,7 +37,12 @@ def welome():
 
     return question(welcome_msg)
 
+@ask.intent("TestIntent")
 
+def test_intent(station):
+    print("heard: " + str(station))
+    return(question("I heard: " + str(station)))
+    
 @ask.intent("AvailableLinesIntent")
 ## This intent is to get the next arrival times for a given subway line
 
@@ -60,14 +66,28 @@ def available_lines():
 @ask.intent("NextSubwayIntent")
 ## This intent is to get the next arrival times for a given subway line
 
-def next_subway(direction,train):
+def next_subway(direction,train,station):
 
     # hardcode a station ID, route, and line for now
-    station_id = "309"
     print("direction: " + str(direction))
     print("train: " + str(train))
-    train_direction = direction_dict[str(direction).lower()]
-    train_name = train_dict[str(train).lower()]
+    print("station: " + str(station))
+    
+    # lookup user-spoken direction, train, and station to get standardized values
+    try:
+        train_direction = direction_dict[str(direction).lower()]
+    except KeyError:
+        return statement("Sorry, I don't recongnize direction " + str(direction))
+        
+    try:    
+        train_name = train_dict[str(train).lower()]
+    except KeyError:
+        return statement("Sorry, I don't understand train " + str(train))
+        
+    try:
+        station_id = station_dict[str(station).lower()]
+    except KeyError:
+        return statement("Sorry, I don't understand station " + str(station))
     
     print("Intent: NextSubwayIntent")
     
@@ -88,7 +108,7 @@ def next_subway(direction,train):
             delta = time - current_time
             times.append(str(int(round(delta.seconds/60))) + " minutes ")
     
-    msg = "The next " + direction + " " + train_name + " train arrives at Union Square in " + " and ".join(times)
+    msg = "The next " + direction + " " + train_name + " train arrives at " + station + " in " + " and ".join(times)
     print(msg)
     return statement(msg) 
 
