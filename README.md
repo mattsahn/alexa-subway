@@ -17,4 +17,6 @@ python app.py
 # to open local server to Alexa. Get https URL and past into endpoint URL config page in Alexa developer console
 ./ngrok http 5000
 
-
+# /data/*Dict.txt
+these files are used to map Alexa responses to specific, handled values.
+TODO: create automated way of creating Dict files from inputs from MTA
