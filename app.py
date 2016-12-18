@@ -78,11 +78,11 @@ def next_subway(direction,train,station):
     
     # If Alexa returns 'None' for a slot value, we can't continue, so let user know what is missing.
     missing_msg = ""
-    if (direction == 'None'):
+    if (str(direction) == 'None'):
         missing_msg += "I did not hear which direction you want, such as 'Uptown', 'Downtown', or 'Brooklyn Bound'. "
-    if (train == 'None'):
+    if (str(train) == 'None'):
         missing_msg += "I did not hear which train you want, such as 'Six train' or 'L train'. "
-    if (station == 'None'):
+    if (str(station) == 'None'):
         missing_msg += "I did not hear which station you want, such as 'Union Square' or 'West 4th Street'. "
     
     if (missing_msg != ""):
@@ -95,12 +95,12 @@ def next_subway(direction,train,station):
     try:
         train_direction = direction_dict[str(direction).lower()]
     except KeyError:
-        return statement("Sorry, I don't recongnize direction " + str(direction))
+        return statement("Sorry, I don't recognize direction, '" + str(direction) + "'.")
         
     try:    
         train_name = train_dict[str(train).lower()]
     except KeyError:
-        return statement("Sorry, I don't understand train " + str(train))
+        return statement("Sorry, I don't understand train, '" + str(train) + "'.")
         
     try:
         # use fuzzy matching on station names in StationDict.txt to determine which station id to query
@@ -114,7 +114,7 @@ def next_subway(direction,train,station):
         station_id = station_dict[str(station_match)]
         print("Station ID: " + str(station_id))
     except KeyError:
-        return statement("Sorry, I don't understand station " + str(station))
+        return statement("Sorry, I don't understand station, " + str(station) + "'.")
     
     MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
     
@@ -126,13 +126,21 @@ def next_subway(direction,train,station):
     print("updated time: " + str(current_time))
 
     times = []
-    
+    routes ={}
     # Look through MTA response and get next arrival times and time in minutes from now
     for train in data['data'][0][train_direction]:
+        routes[train['route']]=1
         if (train['route']==train_name):
             time = parser.parse(train['time'])
             delta = time - current_time
             times.append(str(int(round(delta.seconds/60))) + " minutes ")
+    if(not times):
+        if (len(routes) == 1):
+            trains_msg = " only has the " + "".join(routes) + " train."
+        else:
+            trains_msg = " has the " + " and ".join(routes) + " trains."
+        return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_match + ". " + \
+        "Perhaps that is not the train or station you want. " + station_match + trains_msg )
     
     msg = "The next " + direction + " " + train_name + " train arrives at " + station + " in " + " and ".join(times)
     print(msg)
