@@ -4,6 +4,7 @@ import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from dateutil import parser
+from fuzzywuzzy import process, fuzz
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
 mta_api_url = "https://pbdexmgg8g.execute-api.us-east-1.amazonaws.com/dev"
@@ -85,13 +86,16 @@ def next_subway(direction,train,station):
         return statement("Sorry, I don't understand train " + str(train))
         
     try:
-        station_id = station_dict[str(station).lower()]
+        station_match = process.extractOne(str(station).lower(), station_dict.keys(), scorer=fuzz.token_set_ratio)[0] 
+        print("Station Match:" + str(station_match))
+        station_id = station_dict[str(station_match)]
+        print("Station ID: " + str(station_id))
     except KeyError:
         return statement("Sorry, I don't understand station " + str(station))
     
     print("Intent: NextSubwayIntent")
     
-    MTARequest = requests.get(mta_api_url + "/by-id/" + station_id)
+    MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
     
     data = json.loads(MTARequest.text)
     
