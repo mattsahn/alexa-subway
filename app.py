@@ -155,9 +155,9 @@ def next_subway(direction,train,station):
             times.append(str(int(round(delta.seconds/60))) + mins)
     if(not times):
         if (len(routes) == 1):
-            trains_msg = " only has the " + "".join(routes) + " train."
+            trains_msg = " only has the " + routes[0] + " train."
         else:
-            trains_msg = " has the " + " and ".join(routes) + " trains."
+            trains_msg = " has the " + word_combine(routes) + " trains."
         return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_match + ". " + \
         "Perhaps that is not the train or station you want. " + station_match + trains_msg )
     
