@@ -16,6 +16,7 @@ ask = Ask(app, "/")
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 def dict_from_file(file):
+    """ Returns a dict object based on a file of pipe-delimited key/value pairs """
     d = {}
     with open(file) as f:
         for line in f:
@@ -24,7 +25,28 @@ def dict_from_file(file):
                 (key, val) = line.split('|')
                 d[str(key)] = val
     return d 
-    
+
+def word_combine(x):
+    """ Returns a string that combines a list of words with proper commas and trailing 'and' """
+    num_words = len(x)
+    if num_words == 1: return x[0]
+
+    combined = ""
+    i = 1
+    for item in x:
+        if i == num_words:
+            combined += "and " + item
+            break
+
+        if (num_words == 2 and i == 1):
+            combined += item + " "
+        else:
+            combined += item + ", "
+
+        i+=1
+
+    return combined
+
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
@@ -34,7 +56,7 @@ station_dict = dict_from_file("data/StationDict.txt")
 
 def welome():
 
-    welcome_msg = "welcome to Subway Status! You can ask What lines are available? " + \
+    welcome_msg = "welcome to Subway Time! You can ask me questions like: What lines are available? " + \
     "or When is the next uptown 6 train at Union Square?"
 
     return question(welcome_msg)
@@ -57,13 +79,8 @@ def available_lines():
     data = json.loads(MTARequest.text)
     
     print("json loaded")
-    
-    lines = ""
-    for line in data['data']:
-        print(line)  
-        lines += line + ", "
         
-    return statement("The available lines are " + lines) 
+    return statement("The available lines are " + word_combine(data['data'])) 
     
 @ask.intent("NextSubwayIntent")
 ## This intent is to get the next arrival times for a given subway line
@@ -133,16 +150,18 @@ def next_subway(direction,train,station):
         if (train['route']==train_name):
             time = parser.parse(train['time'])
             delta = time - current_time
-            times.append(str(int(round(delta.seconds/60))) + " minutes ")
+            mins = " minutes"
+            if (int(round(delta.seconds/60)) == 1): mins = " minute"
+            times.append(str(int(round(delta.seconds/60))) + mins)
     if(not times):
         if (len(routes) == 1):
-            trains_msg = " only has the " + "".join(routes) + " train."
+            trains_msg = " only has the " + routes[0] + " train."
         else:
-            trains_msg = " has the " + " and ".join(routes) + " trains."
+            trains_msg = " has the " + word_combine(routes) + " trains."
         return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_match + ". " + \
         "Perhaps that is not the train or station you want. " + station_match + trains_msg )
     
-    msg = "The next " + direction + " " + train_name + " train arrives at " + station + " in " + " and ".join(times)
+    msg = "The next " + direction + " " + train_name + " train arrives at " + station + " in " + word_combine(times)
     print(msg)
     return statement(msg) 
 
