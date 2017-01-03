@@ -1,6 +1,7 @@
 {
     "dev": {
         "app_function": "app.app", 
-        "s3_bucket": "zappa-subway"
+        "s3_bucket": "zappa-subway",
+        "keep_warm": false
     }
 }
