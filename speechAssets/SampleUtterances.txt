@@ -1,5 +1,6 @@
 AvailableLinesIntent	What lines are available
 AvailableLinesIntent	What subways are available
+AvailableLinesIntent	Which subway lines are available
 AvailableLinesIntent    Which subway lines
 AvailableLinesIntent	Which subways do you know
 NextSubwayIntent		When is the next {station} {direction} {train} subway

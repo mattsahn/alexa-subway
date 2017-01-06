@@ -170,8 +170,22 @@ def next_subway(direction,train,station):
 
 def stop():
     print ("Intent: AMAZON.StopIntent")
-    return statement("Goodbye.")
+    return statement("Ok, Goodbye.")
  
+
+@ask.intent("AMAZON.HelpIntent")
+
+def help():
+    print ("Intent: AMAZON.HelpIntent")
+    return question("You can ask me questions like: What lines are available? " + \
+    "or When is the next uptown 6 train at Union Square?")
+
+
+ask.intent("AMAZON.CancelIntent")
+
+def cancel():
+    print ("Intent: AMAZON.CancelIntent")
+    return statement("Ok, Goodbye.") 
  
 if __name__ == '__main__':
 
