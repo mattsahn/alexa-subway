@@ -87,7 +87,7 @@ def available_lines():
     
 def next_subway(direction,train,station):
     print("Intent: NextSubwayIntent")
-
+    
     # print what Alexa returned for each slot. Helps with debugging.
     print("direction: " + str(direction))
     print("train: " + str(train))
@@ -181,7 +181,7 @@ def help():
     "or When is the next uptown 6 train at Union Square?")
 
 
-ask.intent("AMAZON.CancelIntent")
+@ask.intent("AMAZON.CancelIntent")
 
 def cancel():
     print ("Intent: AMAZON.CancelIntent")
