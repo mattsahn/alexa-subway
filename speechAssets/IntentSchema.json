@@ -4,6 +4,15 @@
         "intent": "AvailableLinesIntent"
 
     }, {
+        "intent": "AMAZON.HelpIntent"
+
+    }, {
+        "intent": "AMAZON.CancelIntent"
+
+    }, {
+        "intent": "AMAZON.StopIntent"
+
+    }, {
         "intent": "NextSubwayIntent",
         "slots": [{
             "name": "direction",
