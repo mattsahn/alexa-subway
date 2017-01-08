@@ -26,6 +26,17 @@ def dict_from_file(file):
                 d[str(key)] = val
     return d 
 
+def list_from_file(file):
+    """ Returns a list of tuples object based on a file of pipe-delimited key/value pairs """
+    l = []
+    with open(file) as f:
+        for line in f:
+            if not line.startswith('#') and line.strip():
+                line = line.strip()
+                (key, val) = line.split('|')[:2]
+                l.append((str(key),val))
+    return l 
+
 def word_combine(x):
     """ Returns a string that combines a list of words with proper commas and trailing 'and' """
     num_words = len(x)
@@ -47,10 +58,15 @@ def word_combine(x):
 
     return combined
 
+
+
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
-station_dict = dict_from_file("data/StationDict.txt")
+station_dict = list_from_file("data/StationDict.txt")
+
+## Get Line/Station data from file
+station_line = list_from_file("data/StationLine.txt")
 
 @ask.launch
 
@@ -126,12 +142,39 @@ def next_subway(direction,train,station):
         # TODO: look into subsetting the list of stations to attempt to match based on the user's stated train
         #       line. For example, when user is asking for 6 train, only consider stations along the 6 route. This
         #       addresses problem of similary named stations (ie, 14th street, 42nd street)
-        station_match = process.extractOne(str(station).lower(), station_dict.keys(), scorer=fuzz.token_set_ratio)[0] 
-        print("Station Match:" + str(station_match))
-        station_id = station_dict[str(station_match)]
+        station_match = process.extractOne(str(station).lower(), [j for i,j in station_dict], scorer=fuzz.token_set_ratio)
+        score = station_match[1]
+        station_name = station_match[0]
+        print("Station Match:" + station_name + " Score: " + str(score))
+        station_ids = [t for t in station_dict if t[1] == station_name]
+        print(station_ids)
+        station_id = station_ids[0][0]
         print("Station ID: " + str(station_id))
+        
     except KeyError:
         return statement("Sorry, I don't understand station, " + str(station) + "'.")
+    
+    
+    try:
+        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
+        # Subset based on the train line the user stated. If match percentage is high enough, use this.
+        
+        stations_in_line = [j for (i,j) in station_line if i == train_name]
+        filtered_station_dict = [t for t in station_dict if t[0] in stations_in_line]
+        station_match = process.extractOne(str(station).lower(), [j for i,j in filtered_station_dict], scorer=fuzz.token_set_ratio)
+        print("Filtered Station Match:" + str(station_match[0]) + " Score: " + str(station_match[1]) + " vs " + str(score))
+        station_ids = [t for t in filtered_station_dict if t[1] == station_match[0]]
+        print(station_ids)
+        if (station_match[1] >= 85):
+            print("using subsetted match " + station_match[0] + "instead of " + station_name)
+            station_id = station_ids[0][0]
+            station_name = station_match[0]
+
+        print("Using Station ID: " + str(station_id))
+        
+    except KeyError:
+        return statement("Sorry, I don't understand station, " + str(station) + ".")
+    
     
     MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
     
@@ -155,13 +198,13 @@ def next_subway(direction,train,station):
             times.append(str(int(round(delta.seconds/60))) + mins)
     if(not times):
         if (len(routes) == 1):
-            trains_msg = " only has the " + routes[0] + " train."
+            trains_msg = " only has the " + routes.keys()[0] + " train."
         else:
             trains_msg = " has the " + word_combine(routes) + " trains."
-        return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_match + ". " + \
-        "Perhaps that is not the train or station you want. " + station_match + trains_msg )
+        return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_name + ". " + \
+        "Perhaps that is not the train or station you want. " + station_name + trains_msg )
     
-    msg = "The next " + direction + " " + train_name + " train arrives at " + station + " in " + word_combine(times)
+    msg = "The next " + direction + " " + train_name + " train arrives at " + station_name + " in " + word_combine(times)
     print(msg)
     return statement(msg) 
 
