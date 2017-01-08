@@ -11,6 +11,8 @@ westbound
 queens
 queensbound
 brooklyn bound
+brooklyn
 manhattan bound
+manhattan
 bronx
 bronx bound
