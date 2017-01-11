@@ -24,12 +24,6 @@
             "name": "station",
             "type": "STATION"
         }]
-    }, {
-        "intent": "TestIntent",
-        "slots": [{
-            "name": "station",
-            "type": "STATION"
-        }]
     }]
 
 }
