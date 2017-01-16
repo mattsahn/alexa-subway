@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from dateutil import parser
 from fuzzywuzzy import process, fuzz
+from app_utils import dict_from_file, list_from_file, word_combine
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
 mta_api_url = "https://pbdexmgg8g.execute-api.us-east-1.amazonaws.com/dev"
@@ -14,49 +15,6 @@ app = Flask(__name__)
 ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
-
-def dict_from_file(file):
-    """ Returns a dict object based on a file of pipe-delimited key/value pairs """
-    d = {}
-    with open(file) as f:
-        for line in f:
-            if not line.startswith('#') and line.strip():
-                line = line.strip()
-                (key, val) = line.split('|')
-                d[str(key)] = val
-    return d 
-
-def list_from_file(file):
-    """ Returns a list of tuples object based on a file of pipe-delimited key/value pairs """
-    l = []
-    with open(file) as f:
-        for line in f:
-            if not line.startswith('#') and line.strip():
-                line = line.strip()
-                (key, val) = line.split('|')[:2]
-                l.append((str(key),val))
-    return l 
-
-def word_combine(x):
-    """ Returns a string that combines a list of words with proper commas and trailing 'and' """
-    num_words = len(x)
-    if num_words == 1: return x[0]
-
-    combined = ""
-    i = 1
-    for item in x:
-        if i == num_words:
-            combined += "and " + item
-            break
-
-        if (num_words == 2 and i == 1):
-            combined += item + " "
-        else:
-            combined += item + ", "
-
-        i+=1
-
-    return combined
 
 ## get station ID
 def find_station_id(train,station,station_dict,station_line):
