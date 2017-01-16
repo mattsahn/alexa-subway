@@ -13,6 +13,12 @@
         "intent": "AMAZON.StopIntent"
 
     }, {
+        "intent": "AMAZON.YesIntent"
+
+    }, {
+        "intent": "AMAZON.NoIntent"
+
+    }, {
         "intent": "NextSubwayIntent",
         "slots": [{
             "name": "direction",
@@ -23,6 +29,24 @@
         }, {
             "name": "station",
             "type": "STATION"
+        }]
+    }, {
+        "intent": "StationIntent",
+        "slots": [{
+            "name": "station",
+            "type": "STATION"
+        }]
+    }, {
+        "intent": "TrainIntent",
+        "slots": [{
+            "name": "train",
+            "type": "TRAIN"
+        }]
+    }, {
+        "intent": "DirectionIntent",
+        "slots": [{
+            "name": "direction",
+            "type": "DIRECTION"
         }]
     }]
 

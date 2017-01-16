@@ -3,10 +3,10 @@ import requests
 import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
-from dateutil import parser
-from fuzzywuzzy import process, fuzz
+from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
+## TODO : make this an env variable instead of hard-coding
 mta_api_url = "https://pbdexmgg8g.execute-api.us-east-1.amazonaws.com/dev"
 
 app = Flask(__name__)
@@ -15,64 +15,127 @@ ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
-def dict_from_file(file):
-    """ Returns a dict object based on a file of pipe-delimited key/value pairs """
-    d = {}
-    with open(file) as f:
-        for line in f:
-            if not line.startswith('#') and line.strip():
-                line = line.strip()
-                (key, val) = line.split('|')
-                d[str(key)] = val
-    return d 
-
-def list_from_file(file):
-    """ Returns a list of tuples object based on a file of pipe-delimited key/value pairs """
-    l = []
-    with open(file) as f:
-        for line in f:
-            if not line.startswith('#') and line.strip():
-                line = line.strip()
-                (key, val) = line.split('|')[:2]
-                l.append((str(key),val))
-    return l 
-
-def word_combine(x):
-    """ Returns a string that combines a list of words with proper commas and trailing 'and' """
-    num_words = len(x)
-    if num_words == 1: return x[0]
-
-    combined = ""
-    i = 1
-    for item in x:
-        if i == num_words:
-            combined += "and " + item
-            break
-
-        if (num_words == 2 and i == 1):
-            combined += item + " "
-        else:
-            combined += item + ", "
-
-        i+=1
-
-    return combined
-
-
-
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
+unsupported_train_dict = dict_from_file("data/UnsupportedTrainDict.txt")
 station_dict = list_from_file("data/StationDict.txt")
 
-## Get Line/Station data from file
+## Get Line/Station data from file. Used for improving station recognition based on train requested
 station_line = list_from_file("data/StationLine.txt")
+
+## Main Intent Processing function
+## -------------------------------
+
+def process_intent(session,intent_name,station=None,train=None,direction=None):
+    """ Processes intent based on session object and which Intent called it. Returns a question() or statement() object """
+    
+    print("Station: " + str(station))
+    print("Train: " + str(train))
+    print("Direction: " + str(direction))
+    
+    
+    
+    ## Attempt to resolve the train to use from latest user inputs or from previous session
+    if(train != None):
+        session.attributes['train'] = train
+        try:    
+            train_name = train_dict[str(train).lower()]
+            session.attributes['train_name'] = train_name
+            print("Successfully resolved train: " + str(train_name))
+        except KeyError:
+            try:
+                train_name = unsupported_train_dict[str(train).lower()]
+                session.attributes['train_name'] = train_name
+                print("Successfully resolved train: " + str(train_name))
+                return statement("Unfortunately, the " + str(train_name) + " train is not supported because the MTA doesn't " + \
+                "publish arrival data for this line yet. Goodbye")
+            except KeyError:
+                return question("Sorry, I don't understand train, '" + str(train) + "'." + \
+                " Which train do you want? For example, 'the five train'")
+    else:
+        try:
+            train_name = session.attributes['train_name']
+            print("Found train: " + str(train_name))
+        except:
+            print("No train in session")
+            return question(" Which train do you want? For example, 'the five train'")
+
+
+   
+    ## Attempt to resolve the station ID and name to use from session or latest user inputs
+    if(station != None):
+         
+        station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line,session)
+        
+        if(error_code > 0):
+            print("Error type: " + str(error_code))
+            return question(error_msg)
+        print("Found station based on user input: " + str(station_name) + "[" + station_id + "]")
+            
+    else:
+        try:
+            station_name = session.attributes['station_name']
+            station_id = session.attributes['station_id']
+            print("Found station in session: " + str(station_name) + "[" + station_id + "]")
+        except:
+            print("No station in session")
+            return question(" What station do you want? For example, 'Grand Central'") 
+    
+ 
+    
+    ## Attempt to resolve the direction to use from session or latest user inputs
+    if(direction != None):
+        session.attributes['direction'] = direction
+        try:
+            direction_full = direction
+            train_direction = direction_dict[str(direction).lower()]
+            session.attributes['train_direction'] = train_direction
+        except KeyError:
+            return question("Sorry, I don't recognize direction, '" + str(direction) + "'." + \
+            " Which direction do you want? For example, 'uptown' or 'downtown'")
+    else:
+        try:
+            train_direction = session.attributes['train_direction']
+            direction_full = session.attributes['direction']
+            print("Found direction: " + str(train_direction))
+        except:
+            print("No direction in session")
+            return question(" Which direction do you want? For example, 'uptown' or 'downtown'")
+        
+    
+    
+    ## Handle the different Intents ##
+    ## ---------------------------- ##
+    
+    if(intent_name in ["YesIntent","NextSubwayIntent","StationIntent","TrainIntent","DirectionIntent"]):
+        
+        print("Handling Intent " + intent_name)
+        error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
+
+        if error_code == 1:
+            print("Error code: " + str(error_code))
+            return question(msg)
+        elif error_code == 2:
+            print("Error code: " + str(error_code))
+            return statement(msg)
+        else:
+            print("Successfully found train time. Message: " + msg)
+            return statement(msg)
+    
+    return statement("I'm not sure how to handle that. Goodbye")
+
+## END Main Intent Processing function
+
+
+## BEGIN Alexa flask-ask Intent Functions
+## ----------------------------
 
 @ask.launch
 
 def welome():
 
-    welcome_msg = "welcome to Subway Time! You can ask me questions like: What lines are available? " + \
+    welcome_msg = "welcome to Next Subway! You can ask me questions like: What lines are available? " + \
     "or When is the next uptown 6 train at Union Square?"
 
     return question(welcome_msg)
@@ -97,6 +160,7 @@ def available_lines():
     print("json loaded")
         
     return statement("The available lines are " + word_combine(data['data'])) 
+
     
 @ask.intent("NextSubwayIntent")
 ## This intent is to get the next arrival times for a given subway line
@@ -104,111 +168,82 @@ def available_lines():
 def next_subway(direction,train,station):
     print("Intent: NextSubwayIntent")
     
-    # print what Alexa returned for each slot. Helps with debugging.
-    print("direction: " + str(direction))
-    print("train: " + str(train))
-    print("station: " + str(station))
-    
-    # If Alexa returns 'None' for a slot value, we can't continue, so let user know what is missing.
-    missing_msg = ""
-    if (str(direction) == 'None'):
-        missing_msg += "I did not hear which direction you want, such as 'Uptown', 'Downtown', or 'Brooklyn Bound'. "
-    if (str(train) == 'None'):
-        missing_msg += "I did not hear which train you want, such as 'Six train' or 'L train'. "
-    if (str(station) == 'None'):
-        missing_msg += "I did not hear which station you want, such as 'Union Square' or 'West 4th Street'. "
-    
-    if (missing_msg != ""):
-        print(missing_msg)
-        return statement(missing_msg)
-    
-    
-    # lookup user-spoken direction, train, and station to get standardized values
+    try:
+        return process_intent(session,"NextSubwayIntent",train = train, station = station, direction = direction)
+        
+    except:
+        return statement("There was a problem") 
+
+
+@ask.intent("StationIntent")
+## This intent is triggered when user replies with just a station as a result of being asked which
+## station they want from a previous session. If other values are present in session (train and direction),
+## then attempt to return answer based on the new station provided.
+
+
+def station(station):
+    print("Intent: StationIntent")
+
+    try:
+        return process_intent(session,"StationIntent",station = station)
+        
+    except:
+        return statement("There was a problem") 
+       
+        
+@ask.intent("TrainIntent")
+## This intent is triggered when user replies with just a train as a result of being asked which
+## train they want from a previous session. If other values are present in session (station and direction),
+## then attempt to return answer based on the new train provided.
+
+
+def train(train):
+    print("Intent: TrainIntent")
     
     try:
-        train_direction = direction_dict[str(direction).lower()]
-    except KeyError:
-        return statement("Sorry, I don't recognize direction, '" + str(direction) + "'.")
+        return process_intent(session,"TrainIntent",train = train)
         
-    try:    
-        train_name = train_dict[str(train).lower()]
-    except KeyError:
-        return statement("Sorry, I don't understand train, '" + str(train) + "'.")
-        
-    try:
-        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # TODO: look into converting numbers ordinals (eg, 42nd) to words in the dict and the Alexa response
-        #       to improve quality of station name matching
-        # TODO: look into subsetting the list of stations to attempt to match based on the user's stated train
-        #       line. For example, when user is asking for 6 train, only consider stations along the 6 route. This
-        #       addresses problem of similary named stations (ie, 14th street, 42nd street)
-        station_match = process.extractOne(str(station).lower(), [j for i,j in station_dict], scorer=fuzz.token_set_ratio)
-        score = station_match[1]
-        station_name = station_match[0]
-        print("Station Match:" + station_name + " Score: " + str(score))
-        station_ids = [t for t in station_dict if t[1] == station_name]
-        print(station_ids)
-        station_id = station_ids[0][0]
-        print("Station ID: " + str(station_id))
-        
-    except KeyError:
-        return statement("Sorry, I don't understand station, " + str(station) + "'.")
-    
+    except:
+        return statement("There was a problem") 
+
+
+@ask.intent("DirectionIntent")
+## This intent is triggered when user replies with just a direction as a result of being asked which
+## direction they want from a previous session. If other values are present in session (station and train),
+## then attempt to return answer based on the new direction provided.
+
+
+def direction(direction):
+    print("Intent: DirectionIntent")
     
     try:
-        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # Subset based on the train line the user stated. If match percentage is high enough, use this.
+        return process_intent(session,"DirectionIntent",direction = direction)
         
-        stations_in_line = [j for (i,j) in station_line if i == train_name]
-        filtered_station_dict = [t for t in station_dict if t[0] in stations_in_line]
-        station_match = process.extractOne(str(station).lower(), [j for i,j in filtered_station_dict], scorer=fuzz.token_set_ratio)
-        print("Filtered Station Match:" + str(station_match[0]) + " Score: " + str(station_match[1]) + " vs " + str(score))
-        station_ids = [t for t in filtered_station_dict if t[1] == station_match[0]]
-        print(station_ids)
-        if (station_match[1] >= 85):
-            print("using subsetted match " + station_match[0] + "instead of " + station_name)
-            station_id = station_ids[0][0]
-            station_name = station_match[0]
+    except:
+        return statement("There was a problem") 
 
-        print("Using Station ID: " + str(station_id))
+
+@ask.intent("AMAZON.YesIntent")
+## This intent is when user responds to question about whether the info is correct or not.
+## If they say Yes, we want to return results to them based on values already stored in the session.
+
+def yes():
+    print("Intent: AMAZON.YesIntent")
+    
+    try:
+        return process_intent(session,"YesIntent")
         
-    except KeyError:
-        return statement("Sorry, I don't understand station, " + str(station) + ".")
-    
-    
-    MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
-    
-    data = json.loads(MTARequest.text)
-    
-    print("json loaded")
-    
-    current_time = parser.parse(data['updated'])
-    print("updated time: " + str(current_time))
+    except:
+        return statement("There was a problem") 
+        
+@ask.intent("AMAZON.NoIntent")
+## This intent is when user responds to question about whether the info is correct or not.
+## If they say "No", we ask what station they want.
 
-    times = []
-    routes ={}
-    # Look through MTA response and get next arrival times and time in minutes from now
-    for train in data['data'][0][train_direction]:
-        routes[train['route']]=1
-        if (train['route']==train_name):
-            time = parser.parse(train['time'])
-            delta = time - current_time
-            mins = " minutes"
-            if (int(round(delta.seconds/60)) == 1): mins = " minute"
-            times.append(str(int(round(delta.seconds/60))) + mins)
-    if(not times):
-        if (len(routes) == 1):
-            trains_msg = " only has the " + routes.keys()[0] + " train."
-        else:
-            trains_msg = " has the " + word_combine(routes) + " trains."
-        return statement("Hmm. I don't see any information for the " + train_name + " train at " + station_name + ". " + \
-        "Perhaps that is not the train or station you want. " + station_name + trains_msg )
+def no():
+    return question("Which Station do you want?")
+        
     
-    msg = "The next " + direction + " " + train_name + " train arrives at " + station_name + " in " + word_combine(times)
-    print(msg)
-    return statement(msg) 
-
-
 @ask.intent("AMAZON.StopIntent")
 
 def stop():
@@ -229,9 +264,14 @@ def help():
 def cancel():
     print ("Intent: AMAZON.CancelIntent")
     return statement("Ok, Goodbye.") 
- 
+    
+## END Alexa flask-ask Intent Functions
+
+
+## BEGIN Run Server
+## ----------------
 if __name__ == '__main__':
 
     app.run(debug=True)
 
-  
+## END of Server
