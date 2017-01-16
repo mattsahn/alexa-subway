@@ -3,8 +3,6 @@ AvailableLinesIntent	What subways are available
 AvailableLinesIntent	Which subway lines are available
 AvailableLinesIntent    Which subway lines
 AvailableLinesIntent	Which subways do you know
-AvailableLinesIntent	lines
-AvailableLinesIntent	subways
 AvailableLinesIntent	subway lines
 NextSubwayIntent		When is the next {station} {direction} {train} subway
 NextSubwayIntent		When's the next {station} {direction} {train} subway
@@ -17,3 +15,21 @@ NextSubwayIntent		When is the next {direction} {train} train arriving at {statio
 NextSubwayIntent		When is the next {direction} {train} train arriving at {station} station
 NextSubwayIntent		When is the next {direction} {train} train at {station} arriving
 NextSubwayIntent		When is the next {direction} {train} train arriving at {station}
+NextSubwayIntent        The {train} going {direction} at {station}
+NextSubwayIntent        The {train} train going {direction} at {station}
+NextSubwayIntent		When's the next {train} going {direction} from {station}
+StationIntent           {station}
+StationIntent           {station} station
+StationIntent           {station} stop
+StationIntent           The {station} stop
+TrainIntent             {train}
+TrainIntent             {train} train
+TrainIntent             the {train}
+TrainIntent             the {train} train
+TrainIntent             the {train} line
+TrainIntent             {train} line
+DirectionIntent         {direction}
+DirectionIntent         going {direction}
+DirectionIntent         I'm going {direction}
+DirectionIntent         Heading {direction}
+DirectionIntent         Going to {direction}

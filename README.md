@@ -10,6 +10,8 @@ pip install urllib3[secure]
 
 # current AWS URL as created by Zappa deploy
 https://aai276h0nf.execute-api.us-east-1.amazonaws.com/dev
+## v2
+https://s490itlmml.execute-api.us-east-1.amazonaws.com/v2
 
 # to run server locally (after starting virtualenv)
 python app.py

@@ -1,19 +1,25 @@
 uptown|N
+up town|N
 north|N
 northbound|N
+north bound|N
 south|S
 southbound|S
+south bound|S
 downtown|S
+down town|S
 east|S
 eastbound|S
+east bound|S
 west|N
 westbound|N
+west bound|N
 queens|N
 queensbound|N
+queens bound|N
 brooklyn bound|S
 brooklyn|S
 manhattan bound|N
 manhattan|N
 bronx|N
 bronx bound|N
-
