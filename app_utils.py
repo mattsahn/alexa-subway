@@ -72,6 +72,8 @@ def get_train_times(mta_api_url,station_id,station_name,train_name,direction,tra
         error_code = 1
         if (len(routes) == 1):
             trains_msg = " only has the " + routes.keys()[0] + " train."
+        elif(len(routes) == 0):
+            trains_msg = " does not have any live MTA data available, unfortunately. "
         else:
             trains_msg = " has the " + word_combine(routes) + " trains."
         return error_code,("Hmm. I don't see any information for the " + train_name + " train at " + station_name + ". " + \

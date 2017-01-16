@@ -18,6 +18,7 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
+unsupported_train_dict = dict_from_file("data/UnsupportedTrainDict.txt")
 station_dict = list_from_file("data/StationDict.txt")
 
 ## Get Line/Station data from file. Used for improving station recognition based on train requested
@@ -43,8 +44,15 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             session.attributes['train_name'] = train_name
             print("Successfully resolved train: " + str(train_name))
         except KeyError:
-            return question("Sorry, I don't understand train, '" + str(train) + "'." + \
-            " Which train do you want? For example, 'the five train'")
+            try:
+                train_name = unsupported_train_dict[str(train).lower()]
+                session.attributes['train_name'] = train_name
+                print("Successfully resolved train: " + str(train_name))
+                return statement("Unfortunately, the " + str(train_name) + " train is not supported because the MTA doesn't " + \
+                "publish arrival data for this line yet. Goodbye")
+            except KeyError:
+                return question("Sorry, I don't understand train, '" + str(train) + "'." + \
+                " Which train do you want? For example, 'the five train'")
     else:
         try:
             train_name = session.attributes['train_name']
@@ -52,8 +60,29 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         except:
             print("No train in session")
             return question(" Which train do you want? For example, 'the five train'")
+
+
    
-   
+    ## Attempt to resolve the station ID and name to use from session or latest user inputs
+    if(station != None):
+         
+        station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line,session)
+        
+        if(error_code > 0):
+            print("Error type: " + str(error_code))
+            return question(error_msg)
+        print("Found station based on user input: " + str(station_name) + "[" + station_id + "]")
+            
+    else:
+        try:
+            station_name = session.attributes['station_name']
+            station_id = session.attributes['station_id']
+            print("Found station in session: " + str(station_name) + "[" + station_id + "]")
+        except:
+            print("No station in session")
+            return question(" What station do you want? For example, 'Grand Central'") 
+    
+ 
     
     ## Attempt to resolve the direction to use from session or latest user inputs
     if(direction != None):
@@ -74,25 +103,6 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("No direction in session")
             return question(" Which direction do you want? For example, 'uptown' or 'downtown'")
         
-    
-    ## Attempt to resolve the station ID and name to use from session or latest user inputs
-    if(station != None):
-         
-        station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line,session)
-        
-        if(error_code > 0):
-            print("Error type: " + str(error_code))
-            return question(error_msg)
-        print("Found station based on user input: " + str(station_name) + "[" + station_id + "]")
-            
-    else:
-        try:
-            station_name = session.attributes['station_name']
-            station_id = session.attributes['station_id']
-            print("Found station in session: " + str(station_name) + "[" + station_id + "]")
-        except:
-            print("No station in session")
-            return question(" What station do you want? For example, 'Grand Central'")
     
     
     ## Handle the different Intents ##
