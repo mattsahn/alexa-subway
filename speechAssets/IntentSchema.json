@@ -36,6 +36,18 @@
             "name": "station",
             "type": "STATION"
         }]
+    }, {
+        "intent": "TrainIntent",
+        "slots": [{
+            "name": "train",
+            "type": "TRAIN"
+        }]
+    }, {
+        "intent": "DirectionIntent",
+        "slots": [{
+            "name": "direction",
+            "type": "DIRECTION"
+        }]
     }]
 
 }
