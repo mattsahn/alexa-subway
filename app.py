@@ -3,11 +3,10 @@ import requests
 import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
-from dateutil import parser
-from fuzzywuzzy import process, fuzz
-from app_utils import dict_from_file, list_from_file, word_combine
+from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
+## TODO - make this an env variable instead of hard-coding
 mta_api_url = "https://pbdexmgg8g.execute-api.us-east-1.amazonaws.com/dev"
 
 app = Flask(__name__)
@@ -16,101 +15,12 @@ ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
-## get station ID
-def find_station_id(train,station,station_dict,station_line):
-    error_code=0
-    try:
-        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # TODO: look into converting numbers ordinals (eg, 42nd) to words in the dict and the Alexa response
-        #       to improve quality of station name matching
-        #       line. For example, when user is asking for 6 train, only consider stations along the 6 route. This
-        #       addresses problem of similary named stations (ie, 14th street, 42nd street)
-        station_match = process.extractOne(str(station).lower(), [j for i,j in station_dict], scorer=fuzz.token_set_ratio)
-        score = station_match[1]
-        station_name = station_match[0]
-        print("Station Match:" + station_name + " Score: " + str(score))
-        station_ids = [t for t in station_dict if t[1] == station_name]
-        print(station_ids)
-        station_id = station_ids[0][0]
-        print("Station ID: " + str(station_id))
-        
-    except KeyError:
-        error_code = 1
-        return 0,0,error_code,("Sorry, I don't understand station, " + str(station) + "'. Which station do you want?")
-    
-    
-    try:
-        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # Subset based on the train line the user stated. If match percentage is high enough, use this.
-        
-        stations_in_line = [j for (i,j) in station_line if i == train]
-        filtered_station_dict = [t for t in station_dict if t[0] in stations_in_line]
-        station_match = process.extractOne(str(station).lower(), [j for i,j in filtered_station_dict], scorer=fuzz.token_set_ratio)
-        print("Filtered Station Match:" + str(station_match[0]) + " Score: " + str(station_match[1]) + " vs " + str(score))
-        station_ids = [t for t in filtered_station_dict if t[1] == station_match[0]]
-        print(station_ids)
-        if (station_match[1] >= 85):
-            print("using subsetted match " + station_match[0] + "instead of " + station_name)
-            station_id = station_ids[0][0]
-            station_name = station_match[0]
-
-        print("Using Station ID: " + str(station_id))
-        
-    except KeyError:
-        error_code = 2
-        return 0,0,error_code,("Sorry, I don't understand station, " + str(station) + "." + \
-        " What station do you want? For example, 'Grand Central'")
-    
-    session.attributes['station_id'] = station_id
-    session.attributes['station_name'] = station_name
-    
-    if(score < 70):
-        error_code = 3
-        return station_name,station_id,error_code,("Is " + station_name + " the station you want?")
-    
-    return station_name,station_id,error_code,""
-    
-def get_train_times(station_id,station_name,train_name,direction,train_direction):
-    MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
-    
-    data = json.loads(MTARequest.text)
-    
-    print("json loaded")
-    
-    current_time = parser.parse(data['updated'])
-    print("updated time: " + str(current_time))
-
-    times = []
-    routes ={}
-    error_code = 0
-    # Look through MTA response and get next arrival times and time in minutes from now
-    for train in data['data'][0][train_direction]:
-        routes[train['route']]=1
-        if (train['route']==train_name):
-            time = parser.parse(train['time'])
-            delta = time - current_time
-            mins = " minutes"
-            if (int(round(delta.seconds/60)) == 1): mins = " minute"
-            times.append(str(int(round(delta.seconds/60))) + mins)
-    if(not times):
-        error_code = 1
-        if (len(routes) == 1):
-            trains_msg = " only has the " + routes.keys()[0] + " train."
-        else:
-            trains_msg = " has the " + word_combine(routes) + " trains."
-        return error_code,("Hmm. I don't see any information for the " + train_name + " train at " + station_name + ". " + \
-        "Perhaps that is not the train or station you want. " + station_name + trains_msg )
-    
-    msg = "The next " + direction + " " + train_name + " train arrives at " + station_name + " in " + word_combine(times)
-    print(msg)
-    return(error_code,msg)
-
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
 station_dict = list_from_file("data/StationDict.txt")
 
-## Get Line/Station data from file
+## Get Line/Station data from file. Used for improving station recognition based on train requested
 station_line = list_from_file("data/StationLine.txt")
 
 @ask.launch
@@ -155,6 +65,7 @@ def next_subway(direction,train,station):
     print("Heard direction: " + str(direction))
     print("Heard train: " + str(train))
     print("Heard station: " + str(station))
+    print(session)
     
     # If Alexa returns 'None' for a slot value, we can't continue, so let user know what is missing.
     # Save known slot values to session in case of re-prompt so that they don't have to restate those values.
@@ -210,14 +121,14 @@ def next_subway(direction,train,station):
         
 
         
-    station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line)
+    station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line,session)
     
     if(error_code > 0):
         print("Error type: " + str(error_code))
         return question(error_msg)
         
     
-    error_code,msg = get_train_times(station_id,station_name,train_name,direction,train_direction)
+    error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction,train_direction)
 
     if error_code > 0:
         print("Error code: " + str(error_code))
@@ -236,7 +147,7 @@ def station(station):
     print("Intent: StationIntent")
     print("Session Data")
     print("------------")
-    print(str(session) + "\n")
+    print(session)
     
     if(session.attributes['direction']):
         direction = session.attributes['direction']
@@ -251,14 +162,14 @@ def station(station):
     print("station: " + str(station))
 
 
-    station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line)
+    station_name,station_id,error_code,error_msg = find_station_id(train_name,station,station_dict,station_line,session)
     
     if(error_code > 0):
         print("Error type: " + str(error_code))
         return question(error_msg)
         
     
-    error_code,msg = get_train_times(station_id,station_name,train_name,direction,train_direction)
+    error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction,train_direction)
 
     if error_code > 0:
         print("Error code: " + str(error_code))
@@ -293,13 +204,21 @@ def yes():
         train_name = session.attributes['train_name']
         
     
-    error_code,msg = get_train_times(station_id,station_name,train_name,direction,train_direction)
+    error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction,train_direction)
 
     if error_code > 0:
         print("Error code: " + str(error_code))
         return question(msg)
     else:
         return statement(msg)
+        
+@ask.intent("AMAZON.NoIntent")
+## This intent is when user responds to question about whether the info is correct or not.
+## If they say "No", we ask what station they want.
+
+def no():
+    return question("Which Station do you want?")
+        
     
 @ask.intent("AMAZON.StopIntent")
 
