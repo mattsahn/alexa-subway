@@ -1,15 +1,21 @@
 uptown
 north
 northbound
+north bound
 south
 southbound
+south bound
 downtown
+down town
 east
 eastbound
+east bound
 west
 westbound
+west bound
 queens
 queensbound
+queens bound
 brooklyn bound
 brooklyn
 manhattan bound

@@ -3,8 +3,6 @@ AvailableLinesIntent	What subways are available
 AvailableLinesIntent	Which subway lines are available
 AvailableLinesIntent    Which subway lines
 AvailableLinesIntent	Which subways do you know
-AvailableLinesIntent	lines
-AvailableLinesIntent	subways
 AvailableLinesIntent	subway lines
 NextSubwayIntent		When is the next {station} {direction} {train} subway
 NextSubwayIntent		When's the next {station} {direction} {train} subway
