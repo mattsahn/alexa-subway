@@ -113,14 +113,17 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         print("Handling Intent " + intent_name)
         error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
 
-        if error_code > 0:
+        if error_code == 1:
             print("Error code: " + str(error_code))
             return question(msg)
+        elif error_code == 2:
+            print("Error code: " + str(error_code))
+            return statement(msg)
         else:
             print("Successfully found train time. Message: " + msg)
             return statement(msg)
     
-    return statement("We're done here with intent: " + intent_name)
+    return statement("I'm not sure how to handle that. Goodbye")
 
 ## END Main Intent Processing function
 

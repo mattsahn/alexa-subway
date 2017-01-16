@@ -71,13 +71,14 @@ def get_train_times(mta_api_url,station_id,station_name,train_name,direction,tra
     if(not times):
         error_code = 1
         if (len(routes) == 1):
-            trains_msg = " only has the " + routes.keys()[0] + " train."
+            trains_msg = " only has the " + routes.keys()[0] + " train. Which station and or train do you want?"
         elif(len(routes) == 0):
-            trains_msg = " does not have any live MTA data available, unfortunately. "
+            error_code = 2
+            trains_msg = " does not have any live MTA data available, unfortunately. Goodbye"
         else:
-            trains_msg = " has the " + word_combine(routes) + " trains."
+            trains_msg = " has the " + word_combine(routes) + " trains. Which station and or train do you want?"
         return error_code,("Hmm. I don't see any information for the " + train_name + " train at " + station_name + ". " + \
-        "Perhaps that is not the train or station you want. " + station_name + trains_msg )
+        "Perhaps that is not the train or station you want. " + station_name + trains_msg)
     
     msg = "The next " + direction + " " + train_name + " train arrives at " + station_name + " in " + word_combine(times)
     print(msg)
