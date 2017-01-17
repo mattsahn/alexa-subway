@@ -138,7 +138,7 @@
 137|183 street
 138|bedford avenue
 139|1st avenue
-140|third avenue
+140|3rd avenue
 141|90 street - elmhurst avenue
 142|82 street - jackson hts
 143|111 street
@@ -164,7 +164,7 @@
 163|lafayette avenue
 164|high street
 165|jay street metrotech
-166|fifth avenue 53rd street
+166|5th avenue 53rd street
 167|lexington avenue 53rd street
 168|east broadway
 169|nostrand avenue
@@ -181,7 +181,7 @@
 180|lexington avenue 59th street
 181|68th street hunter college
 182|spring street
-183|west fourth street
+183|west 4th street
 184|8th avenue 14th street
 185|23rd street
 186|chambers street
