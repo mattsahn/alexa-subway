@@ -137,7 +137,7 @@
 136|burnside avenue
 137|183 street
 138|bedford avenue
-139|first avenue
+139|1st avenue
 140|third avenue
 141|90 street - elmhurst avenue
 142|82 street - jackson hts
