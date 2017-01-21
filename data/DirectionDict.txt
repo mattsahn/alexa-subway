@@ -21,5 +21,6 @@ brooklyn bound|S
 brooklyn|S
 manhattan bound|N
 manhattan|N
+8th avenue bound|N
 bronx|N
 bronx bound|N
