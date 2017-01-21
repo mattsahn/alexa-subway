@@ -18,6 +18,8 @@ NextSubwayIntent		When is the next {direction} {train} train arriving at {statio
 NextSubwayIntent        The {train} going {direction} at {station}
 NextSubwayIntent        The {train} train going {direction} at {station}
 NextSubwayIntent		When's the next {train} going {direction} from {station}
+NextSubwayIntent        {train} train at {station}
+NextSubwayIntent        The {train} at {station} station
 StationIntent           {station}
 StationIntent           {station} station
 StationIntent           {station} stop

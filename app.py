@@ -101,7 +101,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("Found direction: " + str(train_direction))
         except:
             print("No direction in session")
-            return question(" Which direction do you want? For example, 'uptown' or 'downtown'")
+            return question(" Which direction do you want?")
         
     
     
