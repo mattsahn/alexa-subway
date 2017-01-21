@@ -101,7 +101,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("Found direction: " + str(train_direction))
         except:
             print("No direction in session")
-            return question(" Which direction do you want? For example, 'uptown' or 'downtown'")
+            return question(" Which direction do you want?")
         
     
     
@@ -135,10 +135,12 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
 
 def welome():
 
-    welcome_msg = "welcome to Next Subway! You can ask me questions like: What lines are available? " + \
-    "or When is the next uptown 6 train at Union Square?"
+    welcome_msg = "welcome to Next Subway! Ask me a question like: " + \
+    "'When is the next uptown 6 train at Union Square?' or ask for help."
 
-    return question(welcome_msg)
+    reprompt_msg = "What would you like to know?"
+    
+    return question(welcome_msg).reprompt(reprompt_msg)
 
 @ask.intent("TestIntent")
 
@@ -172,7 +174,7 @@ def next_subway(direction,train,station):
         return process_intent(session,"NextSubwayIntent",train = train, station = station, direction = direction)
         
     except:
-        return statement("There was a problem") 
+        return statement("") 
 
 
 @ask.intent("StationIntent")
@@ -188,7 +190,7 @@ def station(station):
         return process_intent(session,"StationIntent",station = station)
         
     except:
-        return statement("There was a problem") 
+        return statement("") 
        
         
 @ask.intent("TrainIntent")
@@ -204,7 +206,7 @@ def train(train):
         return process_intent(session,"TrainIntent",train = train)
         
     except:
-        return statement("There was a problem") 
+        return statement("") 
 
 
 @ask.intent("DirectionIntent")
@@ -220,7 +222,7 @@ def direction(direction):
         return process_intent(session,"DirectionIntent",direction = direction)
         
     except:
-        return statement("There was a problem") 
+        return statement("") 
 
 
 @ask.intent("AMAZON.YesIntent")
@@ -234,14 +236,14 @@ def yes():
         return process_intent(session,"YesIntent")
         
     except:
-        return statement("There was a problem") 
+        return statement("") 
         
 @ask.intent("AMAZON.NoIntent")
 ## This intent is when user responds to question about whether the info is correct or not.
 ## If they say "No", we ask what station they want.
 
 def no():
-    return question("Which Station do you want?")
+    return question("Which Station do you want?").reprompt(" Which station was that?")
         
     
 @ask.intent("AMAZON.StopIntent")
@@ -255,8 +257,9 @@ def stop():
 
 def help():
     print ("Intent: AMAZON.HelpIntent")
-    return question("You can ask me questions like: What lines are available? " + \
-    "or When is the next uptown 6 train at Union Square?")
+    return question("You can ask me questions like: When is the next uptown 5 train at Grand Central? " + \
+    "or 'What subway lines are available?' " + \
+    "You can always say 'stop' to exit").reprompt("What do you want to know?")
 
 
 @ask.intent("AMAZON.CancelIntent")
@@ -264,6 +267,15 @@ def help():
 def cancel():
     print ("Intent: AMAZON.CancelIntent")
     return statement("Ok, Goodbye.") 
+
+@ask.intent("AuthorIntent")
+## Easter Egg! HAL 9000...
+def author():
+    print ("Intent: AuthorIntent")
+    return question("Good afternoon. I am the 'Next Subway' Alexa skill. " + \
+    "I became operational in New York City on the 12th of January 2017. " + \
+    "My instructor was Matt Sahn, and he taught me to understand the New York Subway system. " + \
+    "What would you like to know?").reprompt("I didn't catch that. What do you want to ask me?")     
     
 ## END Alexa flask-ask Intent Functions
 

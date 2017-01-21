@@ -4,6 +4,9 @@
         "intent": "AvailableLinesIntent"
 
     }, {
+        "intent": "AuthorIntent"
+
+    }, {
         "intent": "AMAZON.HelpIntent"
 
     }, {

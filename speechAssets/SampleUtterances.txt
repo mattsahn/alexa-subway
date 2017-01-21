@@ -18,6 +18,8 @@ NextSubwayIntent		When is the next {direction} {train} train arriving at {statio
 NextSubwayIntent        The {train} going {direction} at {station}
 NextSubwayIntent        The {train} train going {direction} at {station}
 NextSubwayIntent		When's the next {train} going {direction} from {station}
+NextSubwayIntent        {train} train at {station}
+NextSubwayIntent        The {train} at {station} station
 StationIntent           {station}
 StationIntent           {station} station
 StationIntent           {station} stop
@@ -33,3 +35,10 @@ DirectionIntent         going {direction}
 DirectionIntent         I'm going {direction}
 DirectionIntent         Heading {direction}
 DirectionIntent         Going to {direction}
+AuthorIntent            Who made you
+AuthorIntent            Who created you
+AuthorIntent            Who built you
+AuthorIntent            Who's your father
+AuthorIntent            When were you born
+AuthorIntent            How old are you
+AuthorIntent            Who is your author
