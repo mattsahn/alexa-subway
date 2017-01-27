@@ -93,7 +93,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             session.attributes['train_direction'] = train_direction
         except KeyError:
             return question("Sorry, I don't recognize direction, '" + str(direction) + "'." + \
-            " Which direction do you want? For example, 'uptown' or 'downtown'")
+            " Which direction do you want? For example, 'uptown'")
     else:
         try:
             train_direction = session.attributes['train_direction']
