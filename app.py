@@ -93,7 +93,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             session.attributes['train_direction'] = train_direction
         except KeyError:
             return question("Sorry, I don't recognize direction, '" + str(direction) + "'." + \
-            " Which direction do you want? For example, 'uptown' or 'downtown'")
+            " Which direction do you want? For example, 'uptown'")
     else:
         try:
             train_direction = session.attributes['train_direction']
@@ -113,12 +113,9 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         print("Handling Intent " + intent_name)
         error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
 
-        if error_code == 1:
+        if error_code > 0:
             print("Error code: " + str(error_code))
             return question(msg)
-        elif error_code == 2:
-            print("Error code: " + str(error_code))
-            return statement(msg)
         else:
             print("Successfully found train time. Message: " + msg)
             return statement(msg)

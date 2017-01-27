@@ -24,12 +24,18 @@ StationIntent           {station}
 StationIntent           {station} station
 StationIntent           {station} stop
 StationIntent           The {station} stop
+StationIntent           no {station}
+StationIntent           no {station} station
 TrainIntent             {train}
 TrainIntent             {train} train
 TrainIntent             the {train}
 TrainIntent             the {train} train
 TrainIntent             the {train} line
 TrainIntent             {train} line
+TrainIntent             number {train}
+TrainIntent             number {train} train
+TrainIntent             number {train} line
+TrainIntent             the number {train} 
 DirectionIntent         {direction}
 DirectionIntent         going {direction}
 DirectionIntent         I'm going {direction}
