@@ -2,8 +2,9 @@ import logging
 import requests
 import json
 from flask import Flask, render_template
-from flask_ask import Ask, statement, question, session
+from flask_ask import Ask, statement, question, session, request
 from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
+from db import save_session
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
@@ -48,9 +49,11 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
                 train_name = unsupported_train_dict[str(train).lower()]
                 session.attributes['train_name'] = train_name
                 print("Successfully resolved train: " + str(train_name))
+                save_session(session,request)
                 return statement("Unfortunately, the " + str(train_name) + " train is not supported because the MTA doesn't " + \
                 "publish arrival data for this line yet. Goodbye")
             except KeyError:
+                save_session(session,request)
                 return question("Sorry, I don't understand train, '" + str(train) + "'." + \
                 " Which train do you want? For example, 'the five train'")
     else:
@@ -59,6 +62,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("Found train: " + str(train_name))
         except:
             print("No train in session")
+            save_session(session,request)
             return question(" Which train do you want? For example, 'the five train'")
 
 
@@ -70,6 +74,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         
         if(error_code > 0):
             print("Error type: " + str(error_code))
+            save_session(session,request)
             return question(error_msg)
         print("Found station based on user input: " + str(station_name) + "[" + station_id + "]")
             
@@ -80,6 +85,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("Found station in session: " + str(station_name) + "[" + station_id + "]")
         except:
             print("No station in session")
+            save_session(session,request)
             return question(" What station do you want? For example, 'Grand Central'") 
     
  
@@ -92,6 +98,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             train_direction = direction_dict[str(direction).lower()]
             session.attributes['train_direction'] = train_direction
         except KeyError:
+            save_session(session,request)
             return question("Sorry, I don't recognize direction, '" + str(direction) + "'." + \
             " Which direction do you want? For example, 'uptown'")
     else:
@@ -101,6 +108,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             print("Found direction: " + str(train_direction))
         except:
             print("No direction in session")
+            save_session(session,request)
             return question(" Which direction do you want?")
         
     
@@ -113,6 +121,8 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         print("Handling Intent " + intent_name)
         error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
 
+        save_session(session,request)
+        
         if error_code > 0:
             print("Error code: " + str(error_code))
             return question(msg)
@@ -137,6 +147,8 @@ def welome():
 
     reprompt_msg = "What would you like to know?"
     
+    save_session(session,request)
+    
     return question(welcome_msg).reprompt(reprompt_msg)
 
 @ask.intent("TestIntent")
@@ -157,6 +169,8 @@ def available_lines():
     data = json.loads(MTARequest.text)
     
     print("json loaded")
+    
+    save_session(session,request)
         
     return statement("The available lines are " + word_combine(data['data'])) 
 
@@ -240,6 +254,7 @@ def yes():
 ## If they say "No", we ask what station they want.
 
 def no():
+    save_session(session,request)
     return question("Which Station do you want?").reprompt(" Which station was that?")
         
     
@@ -247,6 +262,7 @@ def no():
 
 def stop():
     print ("Intent: AMAZON.StopIntent")
+    save_session(session,request)
     return statement("Ok, Goodbye.")
  
 
@@ -254,6 +270,7 @@ def stop():
 
 def help():
     print ("Intent: AMAZON.HelpIntent")
+    save_session(session,request)
     return question("You can ask me questions like: When is the next uptown 5 train at Grand Central? " + \
     "or 'What subway lines are available?' " + \
     "You can always say 'stop' to exit").reprompt("What do you want to know?")
@@ -263,12 +280,14 @@ def help():
 
 def cancel():
     print ("Intent: AMAZON.CancelIntent")
+    save_session(session,request)
     return statement("Ok, Goodbye.") 
 
 @ask.intent("AuthorIntent")
 ## Easter Egg! HAL 9000...
 def author():
     print ("Intent: AuthorIntent")
+    save_session(session,request)
     return question("Good afternoon. I am the 'Next Subway' Alexa skill. " + \
     "I became operational in New York City on the 12th of January 2017. " + \
     "My instructor was Matt Sahn, and he taught me to understand the New York Subway system. " + \
