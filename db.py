@@ -3,16 +3,18 @@ import boto3
 import json
 from botocore.exceptions import ClientError
 from boto3.dynamodb.conditions import Key, Attr
+from datetime import datetime
 
 ## Must have already created DynamoDB table called "User" for this to work
 ## It should have a single primary key, "UserId"
 
-table = boto3.resource('dynamodb').Table('User')
+user_table = boto3.resource('dynamodb').Table('User')
+request_table = boto3.resource('dynamodb').Table('Request')
 
 def get_user(session):
     """ Fetch user info from DynamoDB """
     try:
-        response = table.get_item(
+        response = user_table.get_item(
             Key={'userId': session['user']['userId']}
         )
     except ClientError as e:
@@ -24,18 +26,35 @@ def get_user(session):
     except KeyError:
         return False
 
-def save_session(session,intent):
+def save_session(session,request):
     """ Save User info to DynamoDB """
     try:
-        response = table.put_item(
+        response = user_table.put_item(
             Item={
-                'userId': session['user']['userId'],
-                'sessionId': session['sessionId'],
-                'intent': intent,
-                'session': json.dumps(session['attributes'])
+                'userId': session.user.userId,
+                'sessionId': session.sessionId,
+                'requestId': request.requestId,
+                'intent': request.intent.name if "intent" in request else {},
+                'session': json.dumps(session['attributes']),
+                'slots': json.dumps(request['intent']['slots']) if "intent" in request and "slots" in request['intent'] else {},
+                'date': str(datetime.now())
             }
         )
-        print("PutItem succeeded:")
+        print("PutItem User succeeded:")
+        
+        response = request_table.put_item(
+            Item={
+                'userId': session.user.userId,
+                'sessionId': session.sessionId,
+                'requestId': request.requestId,
+                'intent': request.intent.name if "intent" in request else {},
+                'session': json.dumps(session['attributes']),
+                'slots': json.dumps(request['intent']['slots']) if "intent" in request and "slots" in request['intent'] else {},
+                'date': str(datetime.now())
+            }
+        )
+        print("PutItem Request succeeded:")
+        
         print(json.dumps(response))
     
     except ClientError as e:
