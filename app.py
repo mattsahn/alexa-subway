@@ -4,6 +4,7 @@ import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
+from db import save_session
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
@@ -113,6 +114,8 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
         print("Handling Intent " + intent_name)
         error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
 
+        save_session(session,intent_name)
+        
         if error_code > 0:
             print("Error code: " + str(error_code))
             return question(msg)
@@ -137,6 +140,8 @@ def welome():
 
     reprompt_msg = "What would you like to know?"
     
+    save_session(session,"Welcome")
+    
     return question(welcome_msg).reprompt(reprompt_msg)
 
 @ask.intent("TestIntent")
@@ -157,6 +162,8 @@ def available_lines():
     data = json.loads(MTARequest.text)
     
     print("json loaded")
+    
+    save_session(session,"AvailableLinesIntent")
         
     return statement("The available lines are " + word_combine(data['data'])) 
 
@@ -247,6 +254,7 @@ def no():
 
 def stop():
     print ("Intent: AMAZON.StopIntent")
+    save_session(session,"AMAZON.StopIntent")
     return statement("Ok, Goodbye.")
  
 
@@ -254,6 +262,7 @@ def stop():
 
 def help():
     print ("Intent: AMAZON.HelpIntent")
+    save_session(session,"AMAZON.HelpIntent")
     return question("You can ask me questions like: When is the next uptown 5 train at Grand Central? " + \
     "or 'What subway lines are available?' " + \
     "You can always say 'stop' to exit").reprompt("What do you want to know?")
@@ -263,12 +272,14 @@ def help():
 
 def cancel():
     print ("Intent: AMAZON.CancelIntent")
+    save_session(session,"AMAZON.CancelIntent")
     return statement("Ok, Goodbye.") 
 
 @ask.intent("AuthorIntent")
 ## Easter Egg! HAL 9000...
 def author():
     print ("Intent: AuthorIntent")
+    save_session(session,"AuthorIntent")
     return question("Good afternoon. I am the 'Next Subway' Alexa skill. " + \
     "I became operational in New York City on the 12th of January 2017. " + \
     "My instructor was Matt Sahn, and he taught me to understand the New York Subway system. " + \

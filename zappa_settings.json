@@ -13,5 +13,10 @@
         "app_function": "app.app", 
         "s3_bucket": "zappa-subway-v3",
         "keep_warm": false
+    },
+    "v4": {
+        "app_function": "app.app", 
+        "s3_bucket": "zappa-subway-v4",
+        "keep_warm": false
     }
 }

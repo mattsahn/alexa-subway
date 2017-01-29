@@ -9,11 +9,11 @@ from boto3.dynamodb.conditions import Key, Attr
 
 table = boto3.resource('dynamodb').Table('User')
 
-def get_user(userId):
+def get_user(session):
     """ Fetch user info from DynamoDB """
     try:
         response = table.get_item(
-            Key={'userId': userId}
+            Key={'userId': session['user']['userId']}
         )
     except ClientError as e:
         print(e.response['Error']['Message'])
@@ -24,15 +24,15 @@ def get_user(userId):
     except KeyError:
         return False
 
-def save_session(userId, sessionId, session, lastResponse):
+def save_session(session,intent):
     """ Save User info to DynamoDB """
     try:
         response = table.put_item(
             Item={
-                'userId': userId,
-                'sessionId': sessionId,
-                'session': session,
-                'lastResponse': lastResponse
+                'userId': session['user']['userId'],
+                'sessionId': session['sessionId'],
+                'intent': intent,
+                'session': json.dumps(session['attributes'])
             }
         )
         print("PutItem succeeded:")
