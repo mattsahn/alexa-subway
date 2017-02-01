@@ -16,3 +16,9 @@ n|N
 m|M
 em|M
 w|W
+g|G
+gee|G
+z|Z
+zee|Z
+j|J
+jay|J
