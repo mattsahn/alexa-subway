@@ -18,3 +18,9 @@ em|M
 w|W
 7|7
 seven|7
+g|G
+gee|G
+z|Z
+zee|Z
+j|J
+jay|J
