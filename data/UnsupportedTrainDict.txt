@@ -16,6 +16,8 @@ n|N
 m|M
 em|M
 w|W
+7|7
+seven|7
 g|G
 gee|G
 z|Z
