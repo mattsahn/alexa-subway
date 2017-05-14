@@ -1,375 +1,222 @@
-1 avenue
-103 street
-103 street - corona plaza
-104 street
+103rd street
 110th street
-111 street
-116 street
-116 street - columbia university
 116th street
-121 street
-125 street
+116th street - columbia university
 125th street
-135 street
-137 street - city college
-138 street - grand concourse
-14 street / 6 avenue
+135th street
+138th street - grand concourse
+13th7th street - city college
 145 street
-149 street - grand concourse
+145th street
+149th street - grand concourse
 14th street
-15 street - prospect park
-155 street
-157 street
-161 street - yankee stadium
-163 street - amsterdam avenue
-167 street
-168 street - washington hts
-169 street
-170 street
-174 street
-174-175 sts
-175 street
-176 street
-18 avenue
-181 street
-182-183 sts
-183 street
+14th street / 6th avenue
+155th street
+157th street
+161st street - yankee stadium
+167th street
+168th street - washington hts
+170th street
+174th 175th streets
+174th street
+176th street
+181st street
+182nd 183rd streets
+183rd street
+18th avenue
 18th street
-190 street
-191 street
-20 avenue
-207 street
-21 street - queensbridge
-215 street
-219 street
-21st street
-225 street
-23 street
-231 street
-233 street
-238 street
+191st street
+1st avenue
+207th street
+20th avenue
+215th street
+219th street
+225th street
+231st street
+233rd street
+238th street
 23rd street
-25 avenue
-25 street
-28 street
+25th avenue
+25th street
 28th street
-2nd avenue
-3 avenue
-3 avenue - 138 street
-3 avenue - 149 street
-30 avenue
+30th avenue
 33rd street
-34 street - herald sq
-34 street - penn station
-36 avenue
-36 street
+34th street - herald square
+34th street - penn station
+36th avenue
 36th street
-39 avenue
-4 avenue / 9 street
-40th street
-42 street - bryant pk
-42 street - port authority bus terminal
-45 street
-46 street
+39th avenue
+3rd avenue
+3rd avenue - 138th street
+3rd avenue - 149th street
+42nd street - bryant park
+45th street
 46th street
-47-50 sts - rockefeller ctr
 49 street
-5 av/59 street
-5 avenue
-50 street
-51st street
-52nd street
-53 street
-55 street
-57 street
-57 street - 7 avenue
-59 street - columbus circle
+4th avenue / 9th street
+50th street
+51st street lexington avenue 53rd street
+53rd street
+55th street
+57th street - 7th avenue
 59th street
-5th avenue 53rd street
-62 street / new utrecht avenue
-63 dr - rego park
-65 street
-66 street - lincoln center
-67 avenue
-68 street - hunter college
-69th street
-7 avenue
-71 street
-72 street
-74 street - broadway - roosevelt avenue
-75 avenue
-75 street
-77 street
-79 street
-8 avenue / 14 street
-8 street - nyu
-80 street
-81 street - museum of natural history
-82 street - jackson hts
-85 street - forest pkwy
-86 street
+59th street - columbus circle
+5th avenue 59th street
+62nd street / new utrecht avenue
+63rd drive - rego park
+65th street
+66th street - lincoln center
+67th avenue
+68th street - hunter college
+71st street
+72nd street
+74th street - broadway - roosevelt avenue
+77th street
+79th street
+7th avenue
 86th street
-88 street
 8th avenue
-9 avenue
-90 street - elmhurst avenue
-96 street
-alabama avenue
+8th avenue / 14th street
+8th street - nyu
+96th street
+9th avenue
 allerton avenue
-annadale
-aqueduct - n conduit avenue
-aqueduct racetrack
 astor place
-astoria - ditmars blvd
-astoria blvd
-atlantic
+astoria - ditmars boulevard
+astoria boulevard
 atlantic avenue
-atlantic avenue barclays center
+atlantic avenue - barclays center
 avenue h
-avenue i
 avenue j
 avenue m
-avenue n
-avenue p
 avenue u
-avenue x
-barclays center
-bay 50 street
-bay pkwy
-bay ridge - 95 street
-bay ridge avenue
-bay terrace
-baychester avenue
-beach 105 street
-beach 25 street
-beach 36 street
-beach 44 street
-beach 60 street
-beach 67 street
-beach 90 street
-beach 98 street
-bedford - nostrand avs
+bay 50th street
+bay parkway
 bedford avenue
-bedford park blvd
-bedford park blvd - lehman college
+bedford park boulevard
+bedford park boulevard - lehman college
 bergen street
-beverly rd
+beverley road
+beverly road
 borough hall / court street
-bowery
-bowling green
-briarwood - van wyck blvd
-brighton beach
-broad channel
-broad street
 broadway
 broadway junction
 broadway lafayette street / bleecker street
 bronx park east
 brook avenue
-brooklyn bridge city hall
+brooklyn bridge - city hall / chambers street
 buhre avenue
 burke avenue
 burnside avenue
 bushwick avenue - aberdeen street
 canal street
-canarsie - rockaway pkwy
-carroll street
+canarsie - rockaway parkway
 castle hill avenue
-cathedral pkwy
-cathedral pkwy (110 st)
-central avenue
-central park north (110 st)
+cathedral parkway
+central park north 110th street
 chambers street
-chauncey street
-christopher street - sheridan sq
+christopher street - sheridan square
 church avenue
 city hall
 clark street
-classon avenue
-cleveland street
-clifton
-clinton - washington avs
 coney island - stillwell avenue
-cortelyou rd
+cortelyou road
 cortlandt street
-court square
-crescent street
-crown hts - utica avenue
+crown heights - utica avenue
 cypress avenue
-cypress hills
 dekalb avenue
-delancey street / essex street
-ditmas avenue
-dongan hills
 dyckman street
-e 105 street
-e 143 street - street mary's street
-e 149 street
-e 180 street
-east broadway
-eastchester - dyre avenue
-eastern pkwy - brooklyn museum
+east 105th street
+east 143 street - street mary's street
+east 149th street
+east 180th street
+eastern parkway - brooklyn museum
 elder avenue
 elmhurst avenue
-eltingville
-euclid avenue
-far rockaway - mott avenue
 flatbush avenue - brooklyn college
-flushing - main street
-flushing avenue
-fordham rd
-forest avenue
-forest hills - 71 avenue
-fort hamilton pkwy
-franklin avenue
+fordham road
+forest hills - 71st avenue
+fort hamilton parkway
 franklin avenue / botanic garden
 franklin street
 freeman street
-fresh pond rd
 fulton street
-gates avenue
 graham avenue
 grand army plaza
 grand avenue - newtown
-grand central
+grand central - 42nd street
 grand street
-grant avenue
-grant city
-grasmere
-great kills
-greenpoint avenue
-gun hill rd
+gun hill road
 halsey street
-harlem - 148 street
-hewes street
-high street
+harlem - 148th street
 houston street
-howard beach - jfk airport
-hoyt - schermerhorn sts
 hoyt street
-huguenot
-hunters point avenue
 hunts point avenue
 intervale avenue
-inwood - 207 street
 jackson avenue
-jamaica - 179 street
-jamaica - van wyck
-jamaica center - parsons/archer
 jay street - metrotech
-jefferson avenue
 jefferson street
-junction blvd
-kew gardens - union tpke
 kings highway
-kings hwy
-kingsbridge rd
-kingston - throop avs
+kingsbridge road
 kingston avenue
-knickerbocker avenue
-kosciuszko street
-lafayette avenue
-lexington av/63 street
-lexington avenue 53rd street
 lexington avenue 59th street
-liberty avenue
 livonia avenue / junius street
 longwood avenue
-lorimer street
-marble hill - 225 street
-marcy avenue
-metropolitan avenue lorimer street
-mets willets point
-middle village - metropolitan avenue
-middletown rd
+marble hill - 225th street
+metropolitan avenue / lorimer street
+middletown road
 montrose avenue
 morgan avenue
-morris park
-morrison av- sound view
-mosholu pkwy
-mt eden avenue
-myrtle - willoughby avs
-myrtle - wyckoff avs
-myrtle avenue
-nassau
-nassau avenue
-neck rd
-neptune avenue
+morrison avenue sound view
+mosholu parkway
+mount eden avenue
+myrtle - wyckoff avenues
 nereid avenue
 nevins street
-new dorp
 new lots avenue
 newkirk avenue
-northern blvd
-norwood - 205 street
-norwood avenue
+newkirk plaza
+northern boulevard
+norwood - 205th street
 nostrand avenue
-oakwood heights
-ocean pkwy
-old town
-ozone park - lefferts blvd
-park pl
+park place
 parkchester
 parkside avenue
-parsons blvd
 pelham bay park
-pelham pkwy
+pelham parkway
 pennsylvania avenue
-pleasant plains
 president street
 prince street
-prince's bay
 prospect avenue
 prospect park
 queens plaza
 queensboro plaza
-ralph avenue
 rector street
-richmond valley
 rockaway avenue
-rockaway blvd
-rockaway park - beach 116 street
-roosevelt island
+rockefeller center
+saint lawrence avenue
 saratoga avenue
-seneca avenue
-sheepshead bay
-shepherd avenue
 simpson street
-smith - 9 sts
 south ferry loop / whitehall street
 spring street
-st george
-st lawrence avenue
-stapleton
 steinway street
 sterling street
-sutphin blvd - archer avenue - jfk airport
-sutphin boulevard
 sutter avenue
-sutter avenue - rutland rd
-times sq - 42 street
-tompkinsville
-tottenville
+sutter avenue - rutland road
+times square - 42nd street
 tremont avenue
-union square
 union square 14th street
 union street
-utica avenue
-van cortlandt park - 242 street
+van cortlandt park - 242nd street
 van siclen avenue
-vernon blvd - jackson avenue
-w 8 street - ny aquarium
-wakefield - 241 street
+wakefield - 241nd street
 wall street
 west 4th street
-west farms sq - e tremont avenue
-westchester sq - e tremont avenue
+west farms square - east tremont avenue
+westchester square - east tremont avenue
 whitlock avenue
 wilson avenue
 winthrop street
-woodhaven blvd
+woodhaven boulevard
 woodlawn
-woodside 61st street
-world trade center
-york street
 zerega avenue
