@@ -1,23 +1,31 @@
-AvailableLinesIntent	What lines are available
-AvailableLinesIntent	What subways are available
-AvailableLinesIntent	Which subway lines are available
+AvailableLinesIntent What lines are available
+AvailableLinesIntent What subways are available
+AvailableLinesIntent Which subway lines are available
 AvailableLinesIntent    Which subway lines
-AvailableLinesIntent	Which subways do you know
-AvailableLinesIntent	subway lines
-NextSubwayIntent		When is the next {station} {direction} {train} subway
-NextSubwayIntent		When's the next {station} {direction} {train} subway
-NextSubwayIntent		When's the next {station} {direction} {train} train
-NextSubwayIntent		When is the next {station} {direction} {train} train arriving
-NextSubwayIntent		When is the next {direction} {train} subway at {station}
-NextSubwayIntent		When's the next {direction} {train} train at {station}
-NextSubwayIntent		When's the next {direction} {train} train at {station} station
-NextSubwayIntent		When is the next {direction} {train} train arriving at {station} 
-NextSubwayIntent		When is the next {direction} {train} train arriving at {station} station
-NextSubwayIntent		When is the next {direction} {train} train at {station} arriving
-NextSubwayIntent		When is the next {direction} {train} train arriving at {station}
+AvailableLinesIntent Which subways do you know
+AvailableLinesIntent subway lines
+AuthorIntent            Who made you
+AuthorIntent            Who created you
+AuthorIntent            Who built you
+AuthorIntent            Who's your father
+AuthorIntent            When were you born
+AuthorIntent            How old are you
+AuthorIntent            Who is your author
+NextSubwayIntent 	When is the next {station} {direction} {train} subway
+NextSubwayIntent 	When's the next {station} {direction} {train} subway
+NextSubwayIntent 	When's the next {station} {direction} {train} train
+NextSubwayIntent 	When is the next {station} {direction} {train} train arriving
+NextSubwayIntent 	When is the next {direction} {train} subway at {station}
+NextSubwayIntent	When is the next {direction} {train} train at {station}
+NextSubwayIntent 	When's the next {direction} {train} train at {station}
+NextSubwayIntent 	When's the next {direction} {train} train at {station} station
+NextSubwayIntent 	When is the next {direction} {train} train arriving at {station}
+NextSubwayIntent 	When is the next {direction} {train} train arriving at {station} station
+NextSubwayIntent 	When is the next {direction} {train} train at {station} arriving
+NextSubwayIntent 	When is the next {direction} {train} train arriving at {station}
 NextSubwayIntent        The {train} going {direction} at {station}
 NextSubwayIntent        The {train} train going {direction} at {station}
-NextSubwayIntent		When's the next {train} going {direction} from {station}
+NextSubwayIntent 	When's the next {train} going {direction} from {station}
 NextSubwayIntent        {train} train at {station}
 NextSubwayIntent        The {train} at {station} station
 StationIntent           {station}
@@ -35,16 +43,9 @@ TrainIntent             {train} line
 TrainIntent             number {train}
 TrainIntent             number {train} train
 TrainIntent             number {train} line
-TrainIntent             the number {train} 
+TrainIntent             the number {train}
 DirectionIntent         {direction}
 DirectionIntent         going {direction}
 DirectionIntent         I'm going {direction}
 DirectionIntent         Heading {direction}
 DirectionIntent         Going to {direction}
-AuthorIntent            Who made you
-AuthorIntent            Who created you
-AuthorIntent            Who built you
-AuthorIntent            Who's your father
-AuthorIntent            When were you born
-AuthorIntent            How old are you
-AuthorIntent            Who is your author
