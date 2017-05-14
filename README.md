@@ -24,3 +24,8 @@ these files are used to map Alexa responses to specific, handled values.
 TODO: create automated way of creating Dict files from inputs from MTA
 
 # make StationLine list
+python make_station_line.py  > data/StationLine.txt
+
+# make StationDict list
+# List needs to be manually craafted for accuracy in alexa!
+python make_station_dict.py  | sort | uniq > StationDict.txt
