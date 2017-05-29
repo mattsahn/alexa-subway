@@ -8,7 +8,7 @@ from db import save_session
 
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
-mta_api_url = "https://pbdexmgg8g.execute-api.us-east-1.amazonaws.com/dev"
+mta_api_url = "https://rcgj41hz63.execute-api.us-east-1.amazonaws.com/v2"
 
 app = Flask(__name__)
 

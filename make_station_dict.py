@@ -14,4 +14,4 @@ for line in data['data']:
     MTARequest = requests.get(mta_api_url+"/by-route/" + line)
     data = json.loads(MTARequest.text)
     for station in data['data']:
-        print(line + "|" + str(station['id']) + "|" + str(station['name']) )
+        print(str(station['id']) + "|" + str(station['name']).lower() )

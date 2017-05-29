@@ -17,3 +17,9 @@ el|L
 l|L
 ess|S
 s|S
+n|N
+q|Q
+r|R
+are|R
+d|D
+dee|D
