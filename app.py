@@ -5,7 +5,6 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session, request
 from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
 from db import save_session
-
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
 mta_api_url = "https://rcgj41hz63.execute-api.us-east-1.amazonaws.com/v2"
@@ -119,13 +118,16 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
     if(intent_name in ["YesIntent","NextSubwayIntent","StationIntent","TrainIntent","DirectionIntent"]):
         
         print("Handling Intent " + intent_name)
-        error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction)
+        error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction,station_line)
 
         save_session(session,request)
         
-        if error_code > 0:
+        if error_code == 1:
             print("Error code: " + str(error_code))
             return question(msg)
+        elif error_code == 2:
+            print("Error code: " +str(error_code))
+            return statement(msg)
         else:
             print("Successfully found train time. Message: " + msg)
             return statement(msg)
@@ -185,7 +187,7 @@ def next_subway(direction,train,station):
         return process_intent(session,"NextSubwayIntent",train = train, station = station, direction = direction)
         
     except:
-        return statement("") 
+        return statement("I'm sorry, there was an error.") 
 
 
 @ask.intent("StationIntent")

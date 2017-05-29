@@ -46,15 +46,19 @@ def word_combine(x):
     
     return combined
     
-def get_train_times(mta_api_url,station_id,station_name,train_name,direction,train_direction):
+def get_train_times(mta_api_url,station_id,station_name,train_name,direction,train_direction,station_line):
     MTARequest = requests.get(mta_api_url + "/by-id/" + str(station_id))
     
     data = json.loads(MTARequest.text)
     
     print("json loaded")
     
-    current_time = parser.parse(data['updated'])
-    print("updated time: " + str(current_time))
+    # wrap in try since a completely empty station will have no updated time
+    try:
+        current_time = parser.parse(data['updated'])
+        print("updated time: " + str(current_time))
+    except:
+        current_time = ""
 
     times = []
     routes ={}
@@ -70,10 +74,21 @@ def get_train_times(mta_api_url,station_id,station_name,train_name,direction,tra
             times.append(str(int(round(delta.seconds/60))) + mins)
     if(not times):
         error_code = 1
+        
+        # train may be temporarily not running. check against known station/line dict for that case
+        t = (train_name,station_id)
+        if t in station_line:
+            error_code = 2
+            print("found " + train_name + " train at station " + station_id + " in station line list. Train must not be running now.")
+            return error_code,("Hmm, there's no arrival data currently for the " + train_name + " train at " + station_name + \
+            ". It may be out of service for that station at this time. Goodbye.")
+            
+        # otherwise, give user info that might be of use for the station they asked for and reprompt.
+        
         if (len(routes) == 1):
             trains_msg = " only has the " + routes.keys()[0] + " train. Which station or train do you want?"
         elif(len(routes) == 0):
-            error_code = 2
+            error_code = 1
             trains_msg = " does not have any MTA data available. Which station do you want?"
         else:
             trains_msg = " has the " + word_combine(routes) + " trains. Which station or train do you want?"
