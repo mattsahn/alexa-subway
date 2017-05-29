@@ -1,5 +1,12 @@
+
+<p align="center">
+  <img src="https://images-na.ssl-images-amazon.com/images/I/516aDn++z7L.png" alt="NextSubway"/>
+</p>
+
 # alexa-subway
-Alexa app to provide real-time NYC subway arrival times at a given station
+Alexa app called NextSubway to provide real-time NYC subway arrival times at a given station
+
+Available for Alexa on Amazon here: https://www.amazon.com/Matt-Sahn-NextSubway/dp/B01N9MO4DT/
 
 # to get started, create a virtualenv and activate it
 virtualenv -p /usr/bin/python2.7 .venv
