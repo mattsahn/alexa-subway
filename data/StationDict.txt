@@ -1,257 +1,493 @@
-00ac|morrison avenue sound view
-0116|bergen street
-013d|cortlandt street
-0161|14th street / 6th avenue
-0252|houston street
-0266|beverly road
-032e|livonia avenue / junius street
-03c6|saratoga avenue
-05e1|57th street - 7th avenue
-060a|3rd avenue - 149th street
-0690|50th street
-0731|broadway junction
-077e|kingston avenue
 07e1|103rd street
-0916|wilson avenue
-091d|gun hill road
-0cca|rockefeller center
-0d0f|183rd street
 0d51|116th street - columbia university
-0deb|167th street
-0fd1|astoria boulevard
-1068|176th street
-108a|bay parkway
-12f5|86th street
-13fd|kings highway
-13fe|135th street
-14b5|cortlandt street
-1512|metropolitan avenue / lorimer street
-1534|bronx park east
-168d|norwood - 205th street
-17d6|mount eden avenue
-185c|77th street
-18ca|brooklyn bridge - city hall / chambers street
-1953|elmhurst avenue
-19f3|sutter avenue - rutland road
-1a2a|rector street
+c451|125th street
+2b44|137th street - city college
+65de|14th street
+5fd0|145th street
+7327|157th street
+e467|168th street - washington heights
 1afa|18th street
-1b2e|beverley road
-1b5c|union street
-1e7f|morgan avenue
-1ea4|46th street
-1fd4|8th street - nyu
+698d|181st street
+5f93|191st street
+a3c6|207th street
+a97d|215th street
+9b86|23rd street
+c9e1|231st street
+6974|238th street
+d1f4|28th street
+76dc|34th street - penn station
+0690|50th street
+7a18|59th street - columbus circle
+c8ff|66th street - lincoln center
 202c|72nd street
-22f3|65th street
-2335|96th street
-2489|atlantic avenue
-25fa|northern boulevard
-26dd|28th street
+a0a0|79th street
+4c56|86th street
+da4f|96th street
+7f1d|canal street
+5ef0|cathedral parkway
+3988|chambers street
+9fc3|christopher street - sheridan square
+013d|cortlandt street
 2723|dyckman street
+42a0|franklin street
+0252|houston street
+f093|marble hill - 225th street
+e00d|rector street
+84ac|times square - 42nd street
+38b3|van cortlandt park - 242nd street
+9cfd|116th street
+d1c3|125th street
+13fe|135th street
+65de|14th street
+64f8|149th street - grand concourse
+3b8a|174th street
+1afa|18th street
+9b86|23rd street
+d1f4|28th street
+060a|3rd avenue - 149th street
+76dc|34th street - penn station
+202c|72nd street
+da4f|96th street
+7f1d|canal street
+705f|central park north (110th street)
+3988|chambers street
+9fc3|christopher street - sheridan square
+013d|cortlandt street
+979d|east 180th street
+42a0|franklin street
+45fb|freeman street
+0252|houston street
+e96e|intervale avenue
+ec8c|jackson avenue
+c0e1|prospect avenue
+e00d|rector street
+63dc|simpson street
+84ac|times square - 42nd street
+ca46|west farms square - east tremont avenue
+9cfd|116th street
+d1c3|125th street
+13fe|135th street
+65de|14th street
+577b|145th street
+76dc|34th street - penn station
+202c|72nd street
+da4f|96th street
+705f|central park north (110th street)
+34ed|harlem - 148th street
+84ac|times square - 42nd street
+85fc|125th street
+8fe0|138th street - grand concourse
+64f8|149th street - grand concourse
+de32|161st street - yankee stadium
+0deb|167th street
+b922|170th street
+1068|176th street
+0d0f|183rd street
+4564|86th street
+d2c6|atlantic avenue - barclays center
+bbcb|bedford park boulevard - lehman college
+0116|bergen street
+4e75|borough hall / court street
+b6f0|bowling green
+18ca|brooklyn bridge - city hall / chambers street
+a96b|burnside avenue
+6c98|crown heights - utica avenue
+ac1d|eastern parkway - brooklyn museum
+f4f6|fordham road
+a301|franklin avenue / botanic garden
+3cf6|fulton street
+539f|grand army plaza
+87d2|grand central - 42nd street
+8cb2|kingsbridge road
+077e|kingston avenue
+5f44|lexington avenue / 59 street
+032e|livonia avenue / junius street
+69cb|mosholu parkway
+17d6|mount eden avenue
+289d|nevins street
+d964|new lots avenue
+621b|nostrand avenue
+fe13|pennsylvania avenue
+c24c|rockaway avenue
+03c6|saratoga avenue
+19f3|sutter avenue - rutland road
+82bd|union square - 14th street
+f718|van siclen avenue
+7eac|wall street
+816b|woodlawn
+85fc|125th street
+8fe0|138th street - grand concourse
+64f8|149th street - grand concourse
+3b8a|174th street
+69ad|219th street
+7eab|225th street
+eae2|233rd street
+060a|3rd avenue - 149th street
+4564|86th street
+6f3e|allerton avenue
+d2c6|atlantic avenue - barclays center
+0116|bergen street
+0266|beverly road
+4e75|borough hall / court street
+b6f0|bowling green
+1534|bronx park east
+18ca|brooklyn bridge - city hall / chambers street
+b1d1|burke avenue
+9188|church avenue
+979d|east 180th street
+ac1d|eastern parkway - brooklyn museum
+3cec|flatbush avenue - brooklyn college
+a301|franklin avenue / botanic garden
+45fb|freeman street
+3cf6|fulton street
+539f|grand army plaza
+87d2|grand central - 42nd street
+091d|gun hill road
+e96e|intervale avenue
+ec8c|jackson avenue
+5f44|lexington avenue / 59th street
 274a|nereid avenue
 289d|nevins street
-2b44|137th street - city college
-2d15|49 street
-31e9|broadway lafayette street / bleecker street
-3439|bushwick avenue - aberdeen street
-34ed|harlem - 148th street
-3527|cortelyou road
-3871|116th street
-38b3|van cortlandt park - 242nd street
-38c3|36th street
 38db|newkirk avenue
-3988|chambers street
-3b8a|174th street
-3cec|flatbush avenue - brooklyn college
-3cf6|fulton street
-3f99|174th 175th streets
-4029|canarsie - rockaway parkway
-42a0|franklin street
+eb16|pelham parkway
+f340|president street
+c0e1|prospect avenue
+63dc|simpson street
+e4a6|sterling street
+82bd|union square - 14th street
+757b|wakefield - 241st street
+7eac|wall street
+ca46|west farms square - east tremont avenue
+cb70|winthrop street
+48ab|103rd street
+a733|110th street
+3871|116th street
+85fc|125th street
+6766|23rd street
+26dd|28th street
+cdc0|3rd avenue - 138th street
+abd8|33rd street
+fe8e|51st street / lexington avenue / 53rd street
 42e7|68th street - hunter college
+185c|77th street
+4564|86th street
+2335|96th street
+c5ab|astor place
+31e9|broadway - lafayette street / bleecker street
+eb6f|brook avenue
+18ca|brooklyn bridge - city hall / chambers street
+c399|buhre avenue
+7f0a|canal street
+dc82|castle hill avenue
+5d44|cypress avenue
+7750|east 143rd street - street mary's street
+58d4|east 149th street
+8ebd|elder avenue
+87d2|grand central - 42nd street
+f29c|hunts point avenue
+5f44|lexington avenue / 59th street
+851d|longwood avenue
+d86e|middletown road
+00ac|morrison avenue - sound view
+996a|parkchester
+b2f6|pelham bay park
+4c27|spring street
+d7a7|saint lawrence avenue
+82bd|union square - 14th street
+9cf8|westchester square - east tremont avenue
+f76a|whitlock avenue
+44c4|zerega avenue
+6d6a|104th street
+6683|111th street
+caba|125th street
+449e|145th street
+e467|168th street - washington heights
+f73c|175th street
+b62b|181st street
+0d7d|190th street
+3927|34th street - penn station
+0602|42nd street - port authority bus terminal
+7a18|59th street - columbus circle
+6a30|8th avenue / 14th street
+3cee|88th street
+a4b6|beach 25th street
+6d91|beach 36th street
+eee0|beach 44th street
+44f4|beach 60th street
+e8b3|beach 67th street
+ef66|broad channel
+a7ee|dyckman street
+c4cf|far rockaway - mott avenue
+5c68|inwood - 207th street
+5b74|ozone park - lefferts boulevard
+1322|rockaway boulevard
+bed9|103rd street
+e801|116th street
+caba|125th street
 43ba|135th street
 449e|145th street
-44c4|zerega avenue
-4564|86th street
-45fb|freeman street
-47ae|west 4th street
-48ab|103rd street
-48f0|coney island - stillwell avenue
-4c27|spring street
-4c56|86th street
-4e75|borough hall / court street
-5034|5th avenue 59th street
-5194|montrose avenue
-5256|fordham road
-529d|30th avenue
-52ed|dekalb avenue
-530d|50th street
-5397|grand street
-539f|grand army plaza
-5492|1st avenue
-5511|25th avenue
-5545|67th avenue
-577b|145 street
-58d4|east 149th street
-5925|astoria - ditmars boulevard
-5a85|kingsbridge road
-5b18|halsey street
-5d15|3rd avenue
-5d44|cypress avenue
-5ef0|cathedral parkway
-5f40|city hall
-5f44|lexington avenue 59th street
-5f93|191st street
-5fd0|145th street
-621b|nostrand avenue
-62a4|woodhaven boulevard
-63dc|simpson street
-64f8|149th street - grand concourse
-65de|14th street
-66ce|queensboro plaza
-6766|23rd street
-6854|34th street - herald square
-68cf|bay parkway
-6974|238th street
-698d|181st street
-69ad|219th street
-69cb|mosholu parkway
-6a30|8th avenue / 14th street
-6af5|71st street
-6b9a|bedford park boulevard
-6c98|crown heights - utica avenue
-6cec|18th avenue
-6da9|wall street
-6f3e|allerton avenue
-6fd9|42nd street - bryant park
-705f|central park north 110th street
-71ce|avenue m
-71ea|avenue j
-7268|newkirk plaza
-7327|157th street
-74db|park place
-757b|wakefield - 241nd street
-75b5|155th street
-76dc|34th street - penn station
-7750|east 143 street - street mary's street
-7751|167th street
-7796|79th street
-78f3|parkside avenue
+f4eb|155th street
+4657|163rd street - amsterdam avenue
+e467|168th street - washington heights
+1d54|23rd street
+3927|34th street - penn station
+0602|42nd street - port authority bus terminal
+0e0a|50th street
 7a18|59th street - columbus circle
-7b17|36th street
-7c33|prospect avenue
-7e59|grand street
-7eab|225th street
-7f0a|canal street
-7f1d|canal street
-7f29|7th avenue
-816b|woodlawn
-82bd|union square 14th street
-82e4|39th avenue
-84ac|times square - 42nd street
-851d|longwood avenue
-85fc|125th street
-8714|tremont avenue
-87d2|grand central - 42nd street
-87ff|forest hills - 71st avenue
-8a7f|jefferson street
-8acf|9th avenue
-8cb2|kingsbridge road
-8e7e|graham avenue
-8ebd|elder avenue
-8fad|182nd 183rd streets
-8fe0|138th street - grand concourse
-9188|church avenue
+8d93|72nd street
+6a30|8th avenue / 14th street
+b0bd|81st street - museum of natural history
+ae80|86th street
+032a|96th street
+0731|broadway junction
+490c|canal street
+10c1|cathedral parkway (110th street)
+f537|chambers street
+18c4|clinton - washington avenue
+83a0|euclid avenue
+d1f3|franklin avenue
+3cf6|fulton street
+8e04|high street
+ec1f|hoyt - schermerhorn street
 923c|jay street - metrotech
-93b3|8th avenue
-96bd|kings highway
-979d|east 180th street
-996a|parkchester
-9b04|clark street
-9b86|23rd street
-9cf8|westchester square - east tremont avenue
-9cfd|116th street
-9fc3|christopher street - sheridan square
-a081|45th street
-a0a0|79th street
-a301|franklin avenue / botanic garden
-a3a3|23rd street
-a3c6|207th street
-a47d|36th avenue
-a6b2|avenue h
-a733|110th street
-a96b|burnside avenue
-a97d|215th street
-a9a9|4th avenue / 9th street
-abd8|33rd street
-ac1d|eastern parkway - brooklyn museum
-ac92|20th avenue
-b1d1|burke avenue
-b2e2|church avenue
-b2f6|pelham bay park
-b76c|55th street
-b81d|bay 50th street
-b83f|steinway street
-b8a1|53rd street
-b8f3|7th avenue
-b922|170th street
-ba60|fort hamilton parkway
-bbcb|bedford park boulevard - lehman college
-c0e1|prospect avenue
-c24c|rockaway avenue
-c277|avenue u
-c399|buhre avenue
-c451|125th street
-c4f1|62nd street / new utrecht avenue
-c5ab|astor place
-c643|20th avenue
-c6a0|74th street - broadway - roosevelt avenue
-c8ff|66th street - lincoln center
-c9e1|231st street
-ca46|west farms square - east tremont avenue
+8f6d|kingston - throop avenue
+2526|lafayette avenue
+0e83|liberty avenue
+1e5c|nostrand avenue
+a3f2|ralph avenue
+973e|rockaway avenue
+e960|shepherd avenue
+ebc5|spring street
+145c|utica avenue
+ecf3|van siclen avenue
+47ae|west 4th street
 caba|125th street
-cb70|winthrop street
-cdc0|3rd avenue - 138th street
-ce5b|queens plaza
-ce97|bedford avenue
-cf15|prospect park
-d008|prince street
-d154|east 105th street
-d1c3|125th street
-d1f4|28th street
-d2c6|atlantic avenue - barclays center
-d2ee|dekalb avenue
-d7a7|saint lawrence avenue
-d86e|middletown road
-d964|new lots avenue
-da4f|96th street
-dc82|castle hill avenue
-dde6|new lots avenue
+449e|145th street
+abf9|15th street - prospect park
+75b5|155th street
 de32|161st street - yankee stadium
-e00d|rector street
-e165|hoyt street
-e467|168th street - washington hts
-e4a6|sterling street
-e54a|broadway
-e61d|25th street
-e96e|intervale avenue
-ea7e|28th street
-ea88|sutter avenue
-eae2|233rd street
-eb16|pelham parkway
-eb6f|brook avenue
-ec8c|jackson avenue
-ecbb|grand avenue - newtown
-ecd5|south ferry loop / whitehall street
-ed90|fort hamilton parkway
-f093|marble hill - 225th street
-f145|myrtle - wyckoff avenues
-f29c|hunts point avenue
-f340|president street
-f3e5|63rd drive - rego park
+7751|167th street
 f484|170th street
-f4f6|fordham road
-f718|van siclen avenue
-f76a|whitlock avenue
+3f99|174th - 175th street
+81e2|18th avenue
+8fad|182 - 183 street
+3927|34th street - penn station
+a9a9|4th avenue / 9th street
+0602|42nd street - port authority bus terminal
+7a18|59th street - columbus circle
+ebd7|7th avenue
+6a30|8th avenue / 14th street
+020d|avenue i
+1df9|avenue n
+26e0|avenue p
+4c79|avenue u
+a0e7|avenue x
+44ad|bay parkway
+6b9a|bedford park blvd
+fc33|bergen street
+490c|canal street
+77e9|carroll street
+f537|chambers street
+92eb|church avenue
+48f0|coney island - stillwell avenue
+7075|ditmas avenue
+5256|fordham road
+f618|fort hamilton parkway
+3cf6|fulton street
+8e04|high street
+923c|jay street - metrotech
+078c|kings highway
+5a85|kingsbridge road
+1f40|neptune avenue
+168d|norwood - 205th street
+7fa0|smith - 9th street
+8714|tremont avenue
+47ae|west 4th street
+099d|west 8th street - ny aquarium
+1d54|23rd street
+3927|34th street - penn station
+0602|42nd street - port authority bus terminal
+e902|5th avenue / 53rd street
+0e0a|50th street
+fe8e|51st street / lexington avenue / 53rd street
+b8f3|7th avenue
+c6a0|74th street - broadway - roosevelt avenue
+2f5d|75 avenue
+6a30|8th avenue / 14th street
+1d93|briarwood - van wyck blvd
+490c|canal street
+65cd|court square
+87ff|forest hills - 71st avenue
+55b7|jamaica - van wyck
+b142|jamaica center - parsons/archer
+4bf3|kew gardens - union turnpike
+ce5b|queens plaza
+ebc5|spring street
+eeb4|sutphin boulevard - archer avenue - jfk airport
+47ae|west 4th street
+1941|world trade center
+c824|169th street
+6cec|18th avenue
+c643|20th avenue
+7da0|21st street - queensbridge
+5511|25th avenue
+6854|34th street - herald square
+38c3|36th street
+530d|50th street
+b76c|55th street
+05e1|57th street - 7th avenue
+c4f1|62nd street / new utrecht avenue
+6af5|71st street
+c6a0|74th street - broadway - roosevelt avenue
+2f5d|75th avenue
+7796|79th street
+8acf|9th avenue
+d2c6|atlantic avenue - barclays center
+b81d|bay 50 street
+68cf|bay parkway
+1d93|briarwood - van wyck boulevard
+7f0a|canal street
+48f0|coney island - stillwell avenue
+87ff|forest hills - 71st avenue
+ed90|fort hamilton parkway
+bfe1|jamaica - 179 street
+4bf3|kew gardens - union turnpike
+ab3d|lexington avenue / 63rd street
+df86|parsons boulevard
+4edc|roosevelt island
+95cd|sutphin blvd
+84ac|times square - 42nd street
+82bd|union square - 14th street
+abf9|15 street - prospect park
+a9a9|4th avenue / 9th street
+ebd7|7th avenue
+b994|bedford - nostrand avenue
+fc33|bergen street
+77e9|carroll street
+92eb|church avenue
+0920|classon avenue
+69ba|clinton - washington avenue
+f618|fort hamilton parkway
+7982|fulton street
+ec1f|hoyt - schermerhorn street
+7fa0|smith - 9th street
+5492|first avenue
+0161|14th street / 6th avenue
+5d15|3rd avenue
+6a30|8th avenue / 14th street
+2489|atlantic avenue
+ce97|bedford avenue
+0731|broadway junction
+3439|bushwick avenue - aberdeen street
+4029|canarsie - rockaway parkway
+d2ee|dekalb avenue
+d154|east 105 street
+8e7e|graham avenue
+7e59|grand street
+5b18|halsey street
+8a7f|jefferson street
+032e|livonia avenue / junius street
+1512|metropolitan avenue / lorimer street
+5194|montrose avenue
+1e7f|morgan avenue
+f145|myrtle - wyckoff avenue
+dde6|new lots avenue
+ea88|sutter avenue
+82bd|union square - 14th street
+0916|wilson avenue
+c7ad|bowery
+0731|broadway junction
+18ca|brooklyn bridge - city hall / chambers street
+7f0a|canal street
+02f1|chauncey street
+0a81|delancey street / essex street
+e9b2|flushing avenue
+934a|forest avenue
+435b|fresh pond road
+9910|gates avenue
+bba2|halsey street
+5ce2|hewes street
+6d12|kosciuszko street
+f25c|lorimer street
+f961|marcy avenue
+9d44|middle village - metropolitan avenue
+f145|myrtle - wyckoff avenue
+8942|myrtle avenue
+56bd|seneca avenue
+f95c|18 avenue
+ac92|20 avenue
+a3a3|23 street
+e61d|25 street
+ea7e|28 street
+529d|30 avenue
+6854|34th street - herald square
+a47d|36 avenue
+38c3|36 street
+82e4|39 avenue
+a9a9|4th avenue / 9th street
+a081|45 street
+2d15|49 street
+5034|5th av / 59th street
+b8a1|53rd street
+05e1|57 street - 7th avenue
 f916|59th street
-f95c|18th avenue
-fe13|pennsylvania avenue
-fe8e|51st street lexington avenue 53rd street
+c4f1|62 street / new utrecht avenue
+93b3|8th avenue
+1fd4|8th street - nyu
+12f5|86th street
+5925|astoria - ditmars boulevard
+0fd1|astoria boulevard
+d2c6|atlantic avenue - barclays center
+c277|avenue u
+108a|bay parkway
+4e75|borough hall / court street
+e54a|broadway
+7f0a|canal street
+5f40|city hall
+48f0|coney island - stillwell avenue
+14b5|cortlandt street
+52ed|dekalb avenue
+ba60|fort hamilton parkway
+923c|jay street - metrotech
+96bd|kings highway
+5f44|lexington avenue / 59th street
+d008|prince street
+7c33|prospect avenue
+66ce|queensboro plaza
+1a2a|rector street
+ecd5|south ferry loop / whitehall street
+84ac|times square - 42nd street
+82bd|union square - 14th street
+1b5c|union street
+6854|34th street - herald square
+05e1|57th street - 7th avenue
+7f29|7th avenue
+9350|72nd street
+6e3b|86nd street
+12d4|96th street
+d2c6|atlantic avenue - barclays center
+a6b2|avenue h
+71ea|avenue j
+71ce|avenue m
+aebd|avenue u
+1b2e|beverley road
+0132|brighton beach
+7f0a|canal street
+b2e2|church avenue
+48f0|coney island - stillwell avenue
+3527|cortelyou road
+52ed|dekalb avenue
+13fd|kings highway
+ab3d|lexington av/63 street
+4f3c|neck road
+7268|newkirk plaza
+0a02|ocean parkway
+78f3|parkside avenue
+cf15|prospect park
+72e2|sheepshead bay
+84ac|times square - 42nd street
+82bd|union square - 14th street
+099d|west 8th street - ny aquarium
+87ff|forest hills - 71st avenue
+87d2|grand central - 42nd street
+84ac|times square - 42nd street
