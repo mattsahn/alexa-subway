@@ -23,3 +23,15 @@ r|R
 are|R
 d|D
 dee|D
+g|G
+gee|G
+a|A
+c|C
+see|C
+sea|C
+e|E
+f|F
+m|M
+em|M
+b|B
+bee|B
