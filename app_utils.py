@@ -80,7 +80,7 @@ def get_train_times(mta_api_url,station_id,station_name,train_name,direction,tra
         if t in station_line:
             error_code = 2
             print("found " + train_name + " train at station " + station_id + " in station line list. Train must not be running now.")
-            return error_code,("Hmm, there's no arrival data currently for the " + train_name + " train at " + station_name + \
+            return error_code,("Hmm, there's no arrival data currently for the " + direction + " " + train_name + " train at " + station_name + \
             ". It may be out of service for that station at this time. Goodbye.")
             
         # otherwise, give user info that might be of use for the station they asked for and reprompt.
