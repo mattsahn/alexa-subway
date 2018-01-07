@@ -104,10 +104,7 @@ def find_station_id(train,station,station_dict,station_line,session):
     error_code=0
     try:
         # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # TODO: look into converting numbers ordinals (eg, 42nd) to words in the dict and the Alexa response
-        #       to improve quality of station name matching
-        #       line. For example, when user is asking for 6 train, only consider stations along the 6 route. This
-        #       addresses problem of similary named stations (ie, 14th street, 42nd street)
+
         station_match = process.extractOne(str(station).lower(), [j for i,j in station_dict], scorer=fuzz.token_set_ratio)
         score = station_match[1]
         station_name = station_match[0]
@@ -123,8 +120,10 @@ def find_station_id(train,station,station_dict,station_line,session):
     
     
     try:
-        # use fuzzy matching on station names in StationDict.txt to determine which station id to query
-        # Subset based on the train line the user stated. If match percentage is high enough, use this.
+        # Subset stations based on the train line the user stated. If match percentage is high enough, use this instead of
+        # initial match based solely on station name response from user. This increases accuracy of station match since the 
+        # train is more easily/accurately recognized and we can use that information to exclude stations not along that line
+        # and only look for matches on stations associated with that line.
         
         stations_in_line = [j for (i,j) in station_line if i == train]
         filtered_station_dict = [t for t in station_dict if t[0] in stations_in_line]
@@ -152,3 +151,29 @@ def find_station_id(train,station,station_dict,station_line,session):
         return station_name,station_id,error_code,("Is " + station_name + " the station you want?")
     
     return station_name,station_id,error_code,""
+    
+
+## get direction
+def find_direction(direction,direction_dict):
+    # Given a user-provided direction response and a list of direction names and associated direction code,
+    # find the best match and return the name and code
+    error_code=0
+    try:
+        # use fuzzy matching on direction names in direction_dict
+        direction_match = process.extractOne(str(direction).lower(), [i for i,j in direction_dict], scorer=fuzz.token_set_ratio)
+        score = direction_match[1]
+        direction_name = direction_match[0]
+        print("Direction Match:" + direction_name + " Score: " + str(score))
+        direction_ids = [j for j in direction_dict if j[0] == direction_name]
+        direction_id = direction_ids[0][1]
+        
+    except KeyError:
+        error_code = 1
+        return 0,0,error_code,("Sorry, I don't understand direction, " + str(direction) + "'. Which direction do you want?")
+    
+    if (score < 70):
+        ## If fuzzy match score is very low, confirm the direction with user
+        error_code = 3
+        return direction_name, direction_id, error_code, ("Sorry, I don't understand direction, " + str(direction) + "'. Which direction do you want?")
+    
+    return direction_name, direction_id, error_code, ""
