@@ -3,7 +3,7 @@ import requests
 import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session, request
-from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id
+from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id, find_direction
 from db import save_session
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
@@ -17,6 +17,7 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 ## Get dict files
 direction_dict = dict_from_file("data/DirectionDict.txt")
+direction_list = list_from_file("data/DirectionDict.txt")
 train_dict = dict_from_file("data/TrainDict.txt")
 unsupported_train_dict = dict_from_file("data/UnsupportedTrainDict.txt")
 station_dict = list_from_file("data/StationDict.txt")
@@ -91,15 +92,18 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
     
     ## Attempt to resolve the direction to use from session or latest user inputs
     if(direction != None):
+        
         session.attributes['direction'] = direction
-        try:
-            direction_full = direction
-            train_direction = direction_dict[str(direction).lower()]
-            session.attributes['train_direction'] = train_direction
-        except KeyError:
-            save_session(session,request)
-            return question("Sorry, I don't recognize direction, '" + str(direction) + "'." + \
-            " Which direction do you want? For example, 'uptown'")
+        direction_full, train_direction, error_code, error_msg = find_direction(direction,direction_list)
+        if(error_code > 0):
+            print("Error type: " + str(error_code))
+            return question(error_msg)
+        
+        print("Found direction based on user input: " + str(direction_full) + "|" + str(train_direction))
+        session.attributes['train_direction'] = train_direction
+        session.attributes['direction'] = direction_full
+        save_session(session,request)
+
     else:
         try:
             train_direction = session.attributes['train_direction']
@@ -118,6 +122,8 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
     if(intent_name in ["YesIntent","NextSubwayIntent","StationIntent","TrainIntent","DirectionIntent"]):
         
         print("Handling Intent " + intent_name)
+        print("Inputs: station_id:"+str(station_id) + " station_name:" +str(station_name) + " train_name:" + str(train_name) +
+            " direction_full:" + str(direction_full) + " train_direction:" + str(train_direction))
         error_code,msg = get_train_times(mta_api_url,station_id,station_name,train_name,direction_full,train_direction,station_line)
 
         save_session(session,request)
