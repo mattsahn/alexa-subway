@@ -11,6 +11,8 @@ stations = []
 
 # iterate over each train line and get associated station IDs
 for line in data['data']:
+    if(str(line) == ''):
+        continue
     MTARequest = requests.get(mta_api_url+"/by-route/" + line)
     data = json.loads(MTARequest.text)
     for station in data['data']:

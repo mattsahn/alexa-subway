@@ -38,3 +38,7 @@ python make_station_line.py  > data/StationLine.txt
 # make StationDict list
 # List needs to be manually craafted for accuracy in alexa!
 python make_station_dict.py  | sort | uniq > StationDict.txt
+
+# post process the station dict file to clear up spelling/words for matching 
+
+sh -x post_process_stations.cmd
