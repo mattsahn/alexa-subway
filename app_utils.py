@@ -131,7 +131,7 @@ def find_station_id(train,station,station_dict,station_line,session):
         print("Filtered Station Match:" + str(station_match[0]) + " Score: " + str(station_match[1]) + " vs " + str(score))
         station_ids = [t for t in filtered_station_dict if t[1] == station_match[0]]
         print(station_ids)
-        if (station_match[1] >= 85):
+        if (station_match[1] >= 85) or ( station_match[1] >= 70 and station_match[1] >= (score - 5) ):
             # if subset match is higher than 85, use it, or if it's equal to non-subsetted score
             print("using subsetted match " + station_match[0] + "instead of " + station_name)
             station_id = station_ids[0][0]
