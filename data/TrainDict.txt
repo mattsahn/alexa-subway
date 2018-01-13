@@ -19,6 +19,7 @@ ess|S
 s|S
 n|N
 q|Q
+queue|Q
 r|R
 are|R
 d|D
@@ -35,3 +36,4 @@ m|M
 em|M
 b|B
 bee|B
+w|W
