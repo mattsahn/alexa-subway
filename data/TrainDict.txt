@@ -18,6 +18,7 @@ l|L
 ess|S
 s|S
 n|N
+en|N
 q|Q
 queue|Q
 r|R
@@ -31,7 +32,9 @@ c|C
 see|C
 sea|C
 e|E
+ee|E
 f|F
+ef|F
 m|M
 em|M
 b|B
