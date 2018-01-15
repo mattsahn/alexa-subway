@@ -10,6 +10,8 @@ perl -i -pe 's/ ave$/ avenue/g' stations.txt
 perl -i -pe 's/ ave / avenue /g' stations.txt 
 perl -i -pe 's/ av$/ avenue/g' stations.txt 
 perl -i -pe 's/ av / avenue /g' stations.txt 
+perl -i -pe 's/ avs$/ avenues/g' stations.txt 
+perl -i -pe 's/ avs / avenues /g' stations.txt 
 perl -i -pe 's/ ctr$/ center/g' stations.txt 
 perl -i -pe 's/ ctr / center /g' stations.txt 
 perl -i -pe 's/ pl$/ place/g' stations.txt 
