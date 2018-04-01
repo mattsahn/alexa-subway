@@ -7,6 +7,9 @@
         "intent": "AuthorIntent"
 
     }, {
+        "intent": "LastTrainIntent"
+
+    }, {
         "intent": "AMAZON.HelpIntent"
 
     }, {

@@ -4,7 +4,7 @@ import json
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session, request
 from app_utils import dict_from_file, list_from_file, word_combine, get_train_times, find_station_id, find_direction
-from db import save_session
+from db import save_session, save_last_train, get_user
 ## URL of MTA realtime subway API. I am hosting on Lambda
 ## TODO : make this an env variable instead of hard-coding
 mta_api_url = "https://rcgj41hz63.execute-api.us-east-1.amazonaws.com/v2"
@@ -119,7 +119,7 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
     ## Handle the different Intents ##
     ## ---------------------------- ##
     
-    if(intent_name in ["YesIntent","NextSubwayIntent","StationIntent","TrainIntent","DirectionIntent"]):
+    if(intent_name in ["YesIntent","NextSubwayIntent","StationIntent","TrainIntent","DirectionIntent","LastTrainIntent"]):
         
         print("Handling Intent " + intent_name)
         print("Inputs: station_id:"+str(station_id) + " station_name:" +str(station_name) + " train_name:" + str(train_name) +
@@ -136,7 +136,9 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             return statement(msg)
         else:
             print("Successfully found train time. Message: " + msg)
+            save_last_train(session,request)
             return statement(msg)
+
     
     return statement("I'm not sure how to handle that. Goodbye")
 
@@ -152,8 +154,17 @@ def welome():
 
     welcome_msg = "welcome to Next Subway! Ask me a question like: " + \
     "'When is the next uptown 6 train at Union Square?' or ask for help."
-
+    
     reprompt_msg = "What would you like to know?"
+        
+    ## See if the user has a valid previous train session
+    try:
+        prev_session = get_user(session)
+        print("Found session: " + str(prev_session))
+        welcome_msg = "welcome to Next Subway! Ask for 'Last Train' or a question like: " + \
+            "'When is the next uptown 6 train at Union Square?' or ask for help."
+    except:
+        print("Didn't find user")
     
     save_session(session,request)
     
@@ -256,6 +267,32 @@ def yes():
         
     except:
         return statement("") 
+        
+@ask.intent("LastTrainIntent")
+## This intent is when user wants to get the last train they succeeded in querying again
+## It will process their saved session from last time they got train times.
+
+def last_train():
+    print("Intent: LastTrainIntent")
+    
+    try:
+        prev_session = get_user(session)
+        print("Found session: " + str(prev_session))
+        j = json.loads(prev_session["session"])
+        station = j["station_name"]
+        train = j["train"]
+        direction = j["direction"]
+        
+    except:
+        print("Didn't find complete user/session")
+        return question("I couldn't find the last train you requested successfully. Ask me a question like: " + \
+            "'When is the next uptown 6 train at Union Square?' or ask for help.")
+    
+    try:
+        return process_intent(session,"LastTrainIntent",station,train,direction)
+    except:
+        return statement("")
+        
         
 @ask.intent("AMAZON.NoIntent")
 ## This intent is when user responds to question about whether the info is correct or not.
