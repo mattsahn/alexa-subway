@@ -60,11 +60,11 @@ c185|21 street
 a97d|215 street
 69ad|219 street
 7eab|225 street
-1ccf|23 street
-1d54|23 street
-6766|23 street
-9b86|23 street
-a3a3|23 street
+1ccf|23rd street
+1d54|23rd street
+6766|23rd street
+9b86|23rd street
+a3a3|23rd street
 c9e1|231 street
 eae2|233 street
 6974|238 street

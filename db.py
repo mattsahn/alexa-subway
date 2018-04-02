@@ -27,20 +27,8 @@ def get_user(session):
         return False
 
 def save_session(session,request):
-    """ Save User info to DynamoDB """
+    """ Save session info to DynamoDB """
     try:
-        response = user_table.put_item(
-            Item={
-                'userId': session.user.userId,
-                'sessionId': session.sessionId,
-                'requestId': request.requestId,
-                'intent': request.intent.name if "intent" in request else {},
-                'session': json.dumps(session['attributes']),
-                'slots': json.dumps(request['intent']['slots']) if "intent" in request and "slots" in request['intent'] else {},
-                'date': str(datetime.now())
-            }
-        )
-        print("PutItem User succeeded:")
         
         response = request_table.put_item(
             Item={
@@ -54,6 +42,28 @@ def save_session(session,request):
             }
         )
         print("PutItem Request succeeded:")
+        
+        print(json.dumps(response))
+    
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return False
+
+def save_last_train(session,request):
+    """ Save User info to DynamoDB """
+    try:
+        response = user_table.put_item(
+            Item={
+                'userId': session.user.userId,
+                'sessionId': session.sessionId,
+                'requestId': request.requestId,
+                'intent': request.intent.name if "intent" in request else {},
+                'session': json.dumps(session['attributes']),
+                'slots': json.dumps(request['intent']['slots']) if "intent" in request and "slots" in request['intent'] else {},
+                'date': str(datetime.now())
+            }
+        )
+        print("PutItem Last User Train succeeded:")
         
         print(json.dumps(response))
     
