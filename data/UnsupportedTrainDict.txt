@@ -1,6 +1,1 @@
-7|7
-seven|7
-z|Z
-zee|Z
-j|J
-jay|J
+o|O

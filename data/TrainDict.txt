@@ -40,3 +40,7 @@ em|M
 b|B
 bee|B
 w|W
+j|J
+jay|J
+z|Z
+zee|Z

@@ -4,9 +4,9 @@
         "s3_bucket": "zappa-subway",
         "keep_warm": false
     },
-    "v2": {
+    "prod": {
         "app_function": "app.app", 
-        "s3_bucket": "zappa-subway-v2",
+        "s3_bucket": "zappa-subway-prod",
         "keep_warm": false
     },
     "v3": {

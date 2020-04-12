@@ -537,6 +537,36 @@ G|1512|Metropolitan Av / Lorimer St
 G|3e9b|Myrtle - Willoughby Avs
 G|e3da|Nassau Av
 G|7fa0|Smith - 9 Sts
+J|c5f7|104 St
+J|6898|111 St
+J|f53a|121 St
+J|3a03|75 St
+J|47d7|85 St - Forest Pkwy
+J|5b67|Alabama Av
+J|c7ad|Bowery
+J|392c|Broad St
+J|0731|Broadway Jct
+J|18ca|Brooklyn Bridge - City Hall / Chambers St
+J|7f0a|Canal St
+J|02f1|Chauncey St
+J|1378|Cleveland St
+J|97a6|Crescent St
+J|ce2d|Cypress Hills
+J|0a81|Delancey St / Essex St
+J|e9b2|Flushing Av
+J|3cf6|Fulton St
+J|9910|Gates Av
+J|bba2|Halsey St
+J|5ce2|Hewes St
+J|b142|Jamaica Center - Parsons/Archer
+J|6d12|Kosciuszko St
+J|f25c|Lorimer St
+J|f961|Marcy Av
+J|8942|Myrtle Av
+J|f4ad|Norwood Av
+J|eeb4|Sutphin Blvd - Archer Av - JFK Airport
+J|8f24|Van Siclen Av
+J|8a32|Woodhaven Blvd
 L|5492|1 Av
 L|0161|14 St / 6 Av
 L|5d15|3 Av
@@ -602,6 +632,8 @@ M|47ae|W 4 St
 M|62a4|Woodhaven Blvd
 N|f95c|18 Av
 N|ac92|20 Av
+N|a3a3|23 St
+N|ea7e|28 St
 N|529d|30 Av
 N|6854|34 St - Herald Sq
 N|a47d|36 Av
@@ -622,14 +654,11 @@ N|c277|Avenue U
 N|108a|Bay Pkwy
 N|e54a|Broadway
 N|7f0a|Canal St
-N|7f0a|Canal St
-N|48f0|Coney Island - Stillwell Av
 N|ba60|Fort Hamilton Pkwy
 N|96bd|Kings Hwy
 N|5f44|Lexington Av/59 St
 N|d008|Prince St
 N|66ce|Queensboro Plaza
-N|f55f|S.B. Coney Island
 N|84ac|Times Sq - 42 St
 N|82bd|Union Sq - 14 St
 Q|6854|34 St - Herald Sq

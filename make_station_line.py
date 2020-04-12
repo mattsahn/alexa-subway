@@ -1,6 +1,6 @@
 import requests
 import json
-mta_api_url = "https://rcgj41hz63.execute-api.us-east-1.amazonaws.com/v2"
+mta_api_url = "https://ne8z4mru0g.execute-api.us-east-1.amazonaws.com/prod"
 
 # submitting request to get list of train lines
 MTARequest = requests.get(mta_api_url+"/routes")
