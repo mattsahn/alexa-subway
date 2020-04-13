@@ -190,8 +190,10 @@ def available_lines():
     print("json loaded")
     
     save_session(session,request)
+    
+    filteredTrains = [e for e in data['data'] if e not in unsupported_train_dict.values()]
         
-    return statement("The available lines are " + word_combine(data['data'])) 
+    return statement("Right now, I have real time data for the " + word_combine(filteredTrains) + ", trains") 
 
     
 @ask.intent("NextSubwayIntent")
