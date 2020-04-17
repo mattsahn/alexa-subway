@@ -1,7 +1,7 @@
 import requests
 import json
 from dateutil import parser
-from fuzzywuzzy import process, fuzz
+from rapidfuzz import process, fuzz
 
 def dict_from_file(file):
     """ Returns a dict object based on a file of pipe-delimited key/value pairs """
