@@ -35,7 +35,11 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
     print("Train: " + str(train))
     print("Direction: " + str(direction))
     
-    
+    ## Save raw Station and Direction to session, if present, in case we need it in subsequent user interactions
+    if(station != None):
+        session.attributes['raw_station'] = station
+    if(direction != None):
+        session.attributes['raw_direction'] = direction
     
     ## Attempt to resolve the train to use from latest user inputs or from previous session
     if(train != None):
@@ -84,9 +88,22 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
             station_id = session.attributes['station_id']
             print("Found station in session: " + str(station_name) + "[" + station_id + "]")
         except:
-            print("No station in session")
-            save_session(session,request)
-            return question(" What station do you want? For example, 'Grand Central'") 
+            try:
+                ## If user didn't give station and it wasn't resolved before, check if station was uttered in past. 
+                ## If so, attempt to re-resolve station from past session.
+                raw_station = session.attributes['raw_station']
+                print("Found raw station in session: " + raw_station)
+                station_name,station_id,error_code,error_msg = find_station_id(train_name,raw_station,station_dict,station_line,session)
+                if(error_code > 0):
+                    print("couldn't resolve raw station: " + raw_station)
+                    print("Error type: " + str(error_code))
+                    save_session(session,request)
+                    return question(error_msg)
+                print("Found station based on user input: " + str(station_name) + "[" + station_id + "]")
+            except:    
+                print("No resolved or raw station in session")
+                save_session(session,request)
+                return question(" What station do you want? For example, 'Grand Central'") 
     
  
     
