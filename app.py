@@ -123,13 +123,28 @@ def process_intent(session,intent_name,station=None,train=None,direction=None):
 
     else:
         try:
+            ## get resolved direction from session if available
             train_direction = session.attributes['train_direction']
             direction_full = session.attributes['direction']
             print("Found direction: " + str(train_direction))
         except:
-            print("No direction in session")
-            save_session(session,request)
-            return question(" Which direction do you want?")
+            try:
+                raw_direction = session.attributes['raw_direction']
+                print("found raw_direction in session: " + raw_direction)
+                direction_full, train_direction, error_code, error_msg = find_direction(raw_direction,direction_list)
+                if(error_code > 0):
+                    print("Couldn't resolve raw_direction:" + raw_direction)
+                    print("Error type: " + str(error_code))
+                    return question(error_msg)
+        
+                print("Found direction based on previous direction user input: " + str(direction_full) + "|" + str(train_direction))
+                session.attributes['train_direction'] = train_direction
+                session.attributes['direction'] = direction_full
+                save_session(session,request)
+            except:
+                print("No direction in session")
+                save_session(session,request)
+                return question(" Which direction do you want?")
         
     
     
